@@ -690,5 +690,13 @@
             displayLoginAttempts();
         });
     </script>
+    <!-- Supabase SDK -->
+<script src="https://unpkg.com/@supabase/supabase-js"></script>
+<script>
+  const supabaseUrl = 'https://vpoisefajpjhcbpyxnoo.supabase.co';
+  const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZwb2lzZWZhanBqaGNicHl4bm9vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTYwOTQwNzAsImV4cCI6MjA3MTY3MDA3MH0.Vjzofy1joJswOMkAJAF8zQu7Dn_fWFhHsgNmOi0DwjM';
+  const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+</script>
+</body>
 </body>
 </html>
